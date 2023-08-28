@@ -30,14 +30,13 @@ const Home = () => {
   const limit = 4
 
   const getPizzas = async () => {
-    const data = dispatch(
+    const data = await dispatch(
       fetchPizzas({
         limit,
         currentPage,
         searchValue,
         categoryId,
         sortType,
-        totalPages,
       })
     )
 
@@ -51,14 +50,13 @@ const Home = () => {
         categoryId,
         currentPage,
         limit,
-        totalPages,
       })
 
       navigate(`?${queryString}`)
     }
 
     isMounted.current = true
-  }, [categoryId, sortType, currentPage, totalPages, navigate])
+  }, [categoryId, sortType, currentPage])
 
   useEffect(() => {
     if (window.location.search) {
@@ -67,7 +65,7 @@ const Home = () => {
       dispatch(setFilters({ ...params, newSort }))
       isSearch.current = true
     }
-  }, [dispatch])
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0)

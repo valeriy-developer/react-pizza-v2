@@ -53,7 +53,8 @@
     transform: translateX(100px);
     opacity: 0;
     z-index: -1;
-    transition: transform 300ms cubic-bezier(0.075, 0.82, 0.165, 1),
+    transition:
+      transform 300ms cubic-bezier(0.075, 0.82, 0.165, 1),
       opacity 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
     pointer-events: none;
   }
@@ -67,7 +68,8 @@
     );
     top: 0;
     transform: translateX(-100px);
-    transition: transform 320ms 50ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    transition:
+      transform 320ms 50ms cubic-bezier(0.215, 0.61, 0.355, 1),
       opacity 320ms 50ms cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
@@ -139,7 +141,7 @@
 }
 
 .header__title {
-  font-family: 'Montserrat ExtraBold';
+  font-family: 'Montserrat';
   font-weight: 800;
   font-size: vw(24);
 
@@ -180,7 +182,7 @@
   border-radius: 30px;
   padding: vw(12) vw(24);
   color: var(--white);
-  font-family: 'Montserrat Bold';
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: vw(16);
   transition: background-color 0.3s ease;

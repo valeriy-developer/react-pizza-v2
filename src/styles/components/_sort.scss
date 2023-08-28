@@ -32,7 +32,7 @@
   display: flex;
   align-items: center;
   column-gap: vw(8);
-  font-family: 'Montserrat Bold';
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: vw(16);
   letter-spacing: 0.015em;
@@ -108,7 +108,7 @@
   &--active {
     background-color: rgba(254, 95, 30, 0.05);
     color: #fe5f1e;
-    font-family: 'Montserrat Bold';
+    font-family: 'Montserrat';
     font-weight: 700;
     width: 100%;
   }

@@ -15,7 +15,6 @@ export interface IFetchedPizza {
   searchValue: string
   categoryId: number
   sortType: string
-  totalPages: number
 }
 
 export interface IPizzasSlice {

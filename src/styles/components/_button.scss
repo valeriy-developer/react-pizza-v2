@@ -1,5 +1,5 @@
 .button {
-  font-family: 'Montserrat Bold';
+  font-family: 'Montserrat';
   font-weight: 700;
   font-size: vw(16);
   line-height: 100%;
@@ -10,7 +10,9 @@
   border-radius: 30px;
   padding: 0 vw(40);
   background-color: #fe5f1e;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
   height: vw(55);
   width: fit-content;
 
