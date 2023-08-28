@@ -1,0 +1,16 @@
+@use 'sass:math';
+
+@function vw($px, $screen: 1920) {
+  $inVW: math.div($px, $screen) * 100;
+  @return #{$inVW}vw;
+}
+
+@function vh($px, $screen: 1080) {
+  $inVH: math.div($px, $screen) * 100;
+  @return #{$inVH}vh;
+}
+
+@function ratio($width, $height) {
+  $aspectRatio: calc($width / $height);
+  @return #{$aspectRatio};
+}

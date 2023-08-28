@@ -1,0 +1,40 @@
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: vw(9);
+
+  @media (max-width: $br1) {
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+.filter__btn {
+  display: block;
+  background-color: #f9f9f9;
+  padding: vw(14) vw(24);
+  border-radius: 30px;
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(16);
+  transition: background-color 0.2s ease;
+
+  &--active {
+    background-color: #282828;
+    color: var(--white);
+
+    &:hover {
+      background-color: #282828 !important;
+    }
+  }
+
+  &:hover {
+    background-color: #dbdbdb;
+  }
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}

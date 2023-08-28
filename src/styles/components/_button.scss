@@ -1,0 +1,48 @@
+.button {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(16);
+  line-height: 100%;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  column-gap: vw(10);
+  border-radius: 30px;
+  padding: 0 vw(40);
+  background-color: #fe5f1e;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  height: vw(55);
+  width: fit-content;
+
+  @media (max-width: $br1) {
+    padding: 0 24px;
+    column-gap: 8px;
+    font-size: 14px;
+    height: 34px;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    border: 1px solid #d3d3d3;
+    color: #d3d3d3;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  svg {
+    display: block;
+    width: vw(6);
+    height: vw(12);
+
+    @media (max-width: $br1) {
+      width: 6px;
+      height: 12px;
+    }
+  }
+
+  &:hover {
+    background-color: #eb5a1e;
+  }
+}

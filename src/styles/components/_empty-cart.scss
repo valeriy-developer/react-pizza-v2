@@ -1,0 +1,74 @@
+.empty-cart {
+  height: 100vh;
+
+  svg {
+    display: block;
+    width: vw(300);
+    height: vw(255);
+    max-width: 100%;
+    margin-top: vw(46);
+
+    @media (max-width: $br1) {
+      margin-top: 28px;
+      width: 50%;
+      height: 100%;
+    }
+
+    @media (max-width: $br4) {
+      width: 100%;
+    }
+  }
+}
+
+.empty-cart__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.empty-cart__title {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(32);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+  text-align: center;
+
+  @media (max-width: $br1) {
+    font-size: 28px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+  }
+}
+
+.empty-cart__description {
+  font-family: 'Montserrat Bold';
+  font-weight: 400;
+  font-size: vw(18);
+  line-height: 140%;
+  letter-spacing: 0.01em;
+  color: #a1a1a1;
+  text-align: center;
+  margin-top: vw(16);
+
+  @media (max-width: $br1) {
+    margin-top: 16px;
+    font-size: 18px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 16px;
+  }
+}
+
+.cart__back-btn {
+  margin-top: vw(74);
+
+  @media (max-width: $br1) {
+    margin-top: 40px;
+  }
+}

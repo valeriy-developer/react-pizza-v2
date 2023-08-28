@@ -1,0 +1,234 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: vw(10);
+
+  @media (max-width: $br1) {
+    padding: 8px;
+  }
+}
+
+.item__img {
+  aspect-ratio: ratio(800, 800);
+
+  @media (max-width: $br3) {
+    height: 460px;
+    object-fit: contain;
+  }
+  @media (max-width: $br4) {
+    height: fit-content;
+  }
+}
+
+.item__content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.item__title {
+  font-family: 'Montserrat ExtraBold';
+  font-weight: 800;
+  font-size: vw(20);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+  margin-top: vw(10);
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+}
+
+.item__variations {
+  display: flex;
+  flex-direction: column;
+  row-gap: vw(8);
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  margin-top: vw(18);
+  padding: vw(8);
+  width: 100%;
+
+  @media (max-width: $br1) {
+    row-gap: 8px;
+    margin-top: 14px;
+    padding: 8px;
+  }
+}
+
+.item__dough-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: vw(6);
+  width: 100%;
+
+  @media (max-width: $br1) {
+    column-gap: 6px;
+  }
+}
+
+.item__dough-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: vw(8) 0;
+  width: 100%;
+  cursor: pointer;
+  font-size: vw(14);
+  line-height: 100%;
+  letter-spacing: 0.015em;
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  text-transform: lowercase;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+  }
+
+  @media (max-width: $br1) {
+    padding: 10px 0;
+  }
+
+  &--active {
+    background: var(--white);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.item__size-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: vw(6);
+  width: 100%;
+
+  @media (max-width: $br1) {
+    column-gap: 6px;
+  }
+}
+
+.item__size-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border-radius: 5px;
+  padding: vw(8) 0;
+  cursor: pointer;
+  width: 100%;
+  font-size: vw(14);
+  line-height: 100%;
+  letter-spacing: 0.015em;
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  text-transform: lowercase;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+    padding: 10px 0px;
+  }
+
+  &--active {
+    background: var(--white);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.item__purchase-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: vw(18);
+  width: 100%;
+
+  @media (max-width: $br1) {
+    margin-top: 16px;
+  }
+}
+
+.item__price {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(22);
+  line-height: 100%;
+  letter-spacing: 0.015em;
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+  }
+}
+
+.item__btn {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(16);
+  line-height: 100%;
+  color: #eb5a1e;
+  display: flex;
+  align-items: center;
+  column-gap: vw(8);
+  border: 1px solid #eb5a1e;
+  border-radius: 30px;
+  padding: 0 vw(14);
+  background-color: var(--white);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  height: vw(40);
+  width: fit-content;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+    column-gap: 6px;
+    padding: 8px 10px;
+    height: 34px;
+  }
+
+  svg {
+    display: block;
+    width: vw(12);
+    height: vw(12);
+
+    @media (max-width: $br1) {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  &:hover {
+    background-color: #eb5a1e;
+    color: var(--white);
+    path {
+      fill: var(--white);
+    }
+  }
+}
+
+.item__amount {
+  height: vw(22);
+  min-width: vw(22);
+  padding: 0 vw(8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #eb5a1e;
+  color: var(--white);
+  border-radius: 50%;
+  font-size: vw(12);
+  line-height: 104%;
+
+  @media (max-width: $br1) {
+    height: 18px;
+    min-width: 18px;
+    padding: 0 6px;
+    font-size: 12px;
+  }
+}

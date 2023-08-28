@@ -1,0 +1,382 @@
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: vw(94) vw(380);
+
+  @media (max-width: $br1) {
+    padding: 40px 80px;
+  }
+
+  @media (max-width: $br3) {
+    padding: 20px 20px;
+  }
+}
+
+.cart__top-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.cart__title-wrapper {
+  display: flex;
+  align-items: flex-start;
+  column-gap: vw(16);
+
+  @media (max-width: $br1) {
+    align-items: center;
+    column-gap: 12px;
+  }
+
+  @media (max-width: $br4) {
+    column-gap: 8px;
+  }
+
+  svg {
+    display: block;
+    width: vw(29);
+    height: vw(29);
+
+    @media (max-width: $br1) {
+      display: none;
+    }
+  }
+}
+
+.cart__title {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(32);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+
+  @media (max-width: $br1) {
+    font-size: 28px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+  }
+}
+
+.cart__clear-btn {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: vw(16);
+  line-height: 100%;
+  color: #b6b6b6;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  column-gap: vw(7);
+  transition: all 0.2s ease;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+    column-gap: 6px;
+  }
+
+  svg {
+    display: block;
+    width: vw(20);
+    height: vw(20);
+
+    path {
+      transition: all 0.2s ease;
+    }
+
+    @media (max-width: $br1) {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  &:hover {
+    color: #414141;
+
+    path {
+      stroke: #414141;
+    }
+  }
+}
+
+.cart__item-list {
+  width: 100%;
+}
+
+.cart__item {
+  grid-template-columns: auto repeat(3, 1fr);
+  margin-top: vw(30);
+  position: relative;
+  padding-top: vw(30);
+  justify-items: end;
+  align-items: center;
+
+  &::before {
+    content: '';
+    height: 1px;
+    width: 100%;
+    background-color: #f4f4f4;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  @media (max-width: $br1) {
+    margin-top: 24px;
+    padding-top: 24px;
+    justify-items: center;
+    grid-template-columns: auto 1fr;
+    row-gap: 8px;
+  }
+
+  @media (max-width: $br4) {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+}
+
+.cart__item-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart__item-details {
+  display: flex;
+  align-items: center;
+  column-gap: vw(15);
+
+  @media (max-width: $br1) {
+    column-gap: 8px;
+  }
+}
+
+.cart__item-img {
+  height: vw(80);
+  aspect-ratio: ratio(80, 80);
+
+  @media (max-width: $br1) {
+    height: 60px;
+  }
+}
+
+.cart__text-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
+.cart__item-name {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(22);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+
+  @media (min-width: $br1) {
+    max-width: vw(200);
+  }
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+  }
+}
+
+.cart__item-dough {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: vw(18);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+  color: #8d8d8d;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+  }
+}
+
+.cart__amount-wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: vw(12);
+
+  @media (max-width: $br1) {
+    column-gap: 10px;
+  }
+}
+
+.cart__amount-btn {
+  border: 2px solid #fe5f1e;
+  background-color: var(--white);
+  border-radius: 50%;
+  height: vw(32);
+  min-width: vw(32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.2s ease;
+
+  @media (max-width: $br1) {
+    height: 18px;
+    min-width: 18px;
+  }
+
+  svg {
+    display: block;
+    width: vw(9);
+    height: vw(9);
+
+    @media (max-width: $br1) {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  &:hover {
+    background-color: #fe5f1e;
+
+    path {
+      fill: var(--white);
+    }
+  }
+}
+
+.cart__amount {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(22);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+  }
+}
+
+.cart__price {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(22);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+  }
+}
+
+.cart__remove-btn {
+  border: 2px solid #d7d7d7;
+  background-color: var(--white);
+  border-radius: 50%;
+  height: vw(32);
+  min-width: vw(32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.2s ease;
+
+  @media (max-width: $br1) {
+    height: 22px;
+    min-width: 22px;
+  }
+
+  svg {
+    display: block;
+    width: vw(10);
+    height: vw(10);
+
+    @media (max-width: $br1) {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  &:hover {
+    background-color: #d7d7d7;
+
+    path {
+      fill: var(--white);
+    }
+  }
+}
+
+.cart__bottom-block {
+  margin-top: vw(40);
+  width: 100%;
+
+  @media (max-width: $br1) {
+    margin-top: 34px;
+  }
+}
+
+.cart__info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: vw(22);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+
+  @media (max-width: $br1) {
+    font-size: 16px;
+    flex-direction: column;
+    row-gap: 16px;
+  }
+}
+
+.cart__quantity-bold {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+}
+
+.cart__summ-bold {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  color: #fe5f1e;
+}
+
+.cart__btns-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: vw(40);
+
+  @media (max-width: $br1) {
+    margin-top: 34px;
+    flex-direction: column-reverse;
+    row-gap: 16px;
+  }
+}
+
+.cart__back-btn {
+  button {
+    background-color: var(--white);
+    color: #cacaca;
+    border: 1px solid #d3d3d3;
+    transition: all 0.2s ease;
+
+    path {
+      transition: all 0.2s ease;
+    }
+
+    &:hover {
+      background-color: #282828;
+      color: var(--white);
+
+      path {
+        stroke: var(--white);
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+.pagination {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: vw(30);
+  margin-top: vw(60);
+
+  @media (max-width: $br1) {
+    column-gap: 20px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: $br4) {
+    column-gap: 14px;
+  }
+
+  li {
+    &.previous {
+      a {
+        font-size: vw(24);
+
+        @media (max-width: $br1) {
+          font-size: 18px;
+        }
+
+        @media (max-width: $br4) {
+          font-size: 16px;
+        }
+      }
+
+      &.disabled {
+        a {
+          color: #9d9d9d;
+          background-color: #dcd9d9;
+          border: 2px solid #c7c7c7;
+          transition: color 0.3s ease, border 0.3s ease,
+            background-color 0.3s ease;
+        }
+      }
+    }
+
+    &.next {
+      a {
+        font-size: vw(24);
+
+        @media (max-width: $br1) {
+          font-size: 18px;
+        }
+
+        @media (max-width: $br4) {
+          font-size: 16px;
+        }
+      }
+
+      &.disabled {
+        a {
+          color: #9d9d9d;
+          background-color: #dcd9d9;
+          border: 2px solid #c7c7c7;
+          transition: color 0.3s ease, border 0.3s ease,
+            background-color 0.3s ease;
+        }
+      }
+    }
+
+    &.selected {
+      a {
+        background-color: #eb5a1e;
+        color: var(--white);
+        transition: color 0.3s ease, border 0.3s ease,
+          background-color 0.3s ease;
+      }
+    }
+
+    a {
+      font-family: 'Montserrat Bold';
+      font-weight: 700;
+      height: vw(50);
+      min-width: vw(50);
+      // padding: 0 vw(20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: transparent;
+      color: #eb5a1e;
+      border: 2px solid #eb5a1e;
+      border-radius: 50%;
+      font-size: vw(18);
+      line-height: 104%;
+      transition: color 0.3s ease, border 0.3s ease, background-color 0.3s ease;
+
+      @media (max-width: $br1) {
+        height: 44px;
+        min-width: 44px;
+        padding: 0 6px;
+        font-size: 18px;
+      }
+
+      @media (max-width: $br4) {
+        height: 32px;
+        min-width: 32px;
+        padding: 0 6px;
+        font-size: 16px;
+      }
+    }
+  }
+}

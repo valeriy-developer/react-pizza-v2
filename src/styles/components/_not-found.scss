@@ -1,0 +1,49 @@
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  row-gap: vw(20);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  @media (max-width: $br1) {
+    row-gap: 16px;
+  }
+}
+
+.not-found__title {
+  font-size: vw(48);
+  font-family: 'Montserrat ExtraBold';
+  font-weight: 800;
+
+  @media (max-width: $br1) {
+    font-size: 32px;
+  }
+}
+
+.not-found__img {
+  display: block;
+  font-size: vw(48);
+  font-family: 'Montserrat ExtraBold';
+  font-weight: 800;
+
+  @media (max-width: $br1) {
+    font-size: 32px;
+  }
+}
+
+.not-found__desc {
+  display: block;
+  font-size: vw(28);
+  font-family: 'Montserrat';
+  font-weight: 400;
+
+  @media (max-width: $br1) {
+    font-size: 18px;
+  }
+}

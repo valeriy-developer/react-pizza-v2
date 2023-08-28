@@ -1,0 +1,49 @@
+.error-page {
+  display: flex;
+  flex-direction: column;
+  row-gap: vw(28);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  @include col(1, 4);
+
+  @media (max-width: $br1) {
+    row-gap: 16px;
+  }
+}
+
+.error-page__title {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(32);
+  line-height: 100%;
+  letter-spacing: 0.01em;
+
+  @media (max-width: $br1) {
+    font-size: 28px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+  }
+}
+
+.error-page__description {
+  font-family: 'Montserrat Bold';
+  font-weight: 400;
+  font-size: vw(18);
+  line-height: 140%;
+  letter-spacing: 0.01em;
+  color: #a1a1a1;
+  text-align: center;
+
+  @media (max-width: $br1) {
+    font-size: 18px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 16px;
+  }
+}

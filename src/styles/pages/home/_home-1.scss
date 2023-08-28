@@ -1,0 +1,60 @@
+.home-1__line {
+  width: 100%;
+  height: 2px;
+  background-color: #f6f6f6;
+}
+
+.home-1__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: vw(40);
+
+  @media (max-width: $br1) {
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 14px;
+    margin-top: 30px;
+  }
+}
+
+.home-1__content {
+  margin-top: vw(32);
+
+  @media (max-width: $br1) {
+    margin-top: 24px;
+  }
+}
+
+.home-1__title {
+  font-family: 'Montserrat Bold';
+  font-weight: 700;
+  font-size: vw(32);
+  letter-spacing: 0.01em;
+
+  @media (max-width: $br1) {
+    font-size: 28px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+  }
+}
+
+.home-1__items-wrapper {
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: vw(35);
+  row-gap: vw(65);
+  margin-top: vw(35);
+
+  @media (max-width: $br1) {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+    row-gap: 26px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: $br3) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
