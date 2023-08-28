@@ -8,7 +8,7 @@ export const fetchPizzas = createAsyncThunk<IPizza[], IFetchedPizza>(
     const { limit, currentPage, searchValue, categoryId, sortType } = params
 
     const { data } = await axios.get(
-      `http://localhost:5173/api/pizzas?limit=${limit}&page=${currentPage}${
+      `http://localhost:5001/api/pizzas?limit=${limit}&page=${currentPage}${
         searchValue ? `&search=${searchValue}` : ''
       }${categoryId > 0 ? `&filter=${categoryId}` : ''}&sort=${sortType}`
     )
