@@ -1,29 +1,28 @@
-import { useDispatch } from 'react-redux'
 import IconAmountMinus from './icons/IconAmountMinus'
 import IconAmountPlus from './icons/IconAmountPlus'
 import IconRemove from './icons/IconRemove'
 import { minusItem, plusItem, removeItem } from '../redux/slices/cartSlice'
+import { useAppDispatch } from '../redux/hooks'
+import { ICartItem } from '../types/cart'
 
-interface Props {
-  id: string
-  imgUrl: string
-  title: string
-  count: number
-  price: number
-  type: string
-  size: string
-}
+const CartItem = ({
+  id,
+  imgUrl,
+  title,
+  count,
+  price,
+  typeItem,
+  sizeItem,
+}: ICartItem) => {
+  const dispatch = useAppDispatch()
 
-const CartItem = ({ id, imgUrl, title, count, price, type, size }: Props) => {
-  const dispatch = useDispatch()
-
-  const onClickPlus = () => {
+  const onClickPlus = (): void => {
     dispatch(plusItem(id))
   }
 
   const onClickMinus = () => (count <= 0 ? null : dispatch(minusItem(id)))
 
-  const onClickRemove = () => {
+  const onClickRemove = (): void => {
     dispatch(removeItem(id))
   }
 
@@ -34,8 +33,8 @@ const CartItem = ({ id, imgUrl, title, count, price, type, size }: Props) => {
         <div className="cart__text-wrapper">
           <p className="cart__item-name">{title}</p>
           <p className="cart__item-dough">
-            {type} тісто,
-            <span className="cart__item-size"> {size} см.</span>
+            {typeItem} тісто,
+            <span className="cart__item-size"> {sizeItem} см.</span>
           </p>
         </div>
       </div>

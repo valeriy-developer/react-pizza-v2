@@ -1,23 +1,22 @@
-export interface IPizza {
-  id?: string
-  title?: string
-  imgUrl?: string
-  price?: number
-  size?: { 0: number; 1: number }[]
-  category?: number
-  rating?: number
-  types?: { 0: number; 1: number }[]
-}
-
-export interface IFetchedPizza {
-  limit: number
-  currentPage: number
-  searchValue: string
-  categoryId: number
-  sortType: string
+export enum Status {
+  LOADING = 'loading',
+  SUCCESS = 'success',
+  ERROR = 'error',
 }
 
 export interface IPizzasSlice {
   items: IPizza[]
-  status: string
+  status: Status
+}
+
+export interface IPizza {
+  category: number
+  id: string
+  imgUrl: string
+  price: number
+  rating: number
+  size: Array<number>
+  title: string
+  // type: []
+  types: Array<number>
 }

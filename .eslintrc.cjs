@@ -31,6 +31,13 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 0,
+    'no-plusplus': 'off',
+    'no-param-reassign': [
+      'error',
+      {
+        props: false,
+      },
+    ],
     'react/function-component-definition': [
       2,
       {

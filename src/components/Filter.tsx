@@ -1,10 +1,10 @@
-interface Props {
+interface IProps {
   value: number
   onClickCategory: (id: number) => void
 }
 
-const Filter = ({ value, onClickCategory }: Props) => {
-  const categories = [
+const Filter = ({ value, onClickCategory }: IProps) => {
+  const categories: Array<string> = [
     'Усі',
     "М'ясні",
     'Вегетаріанські',
@@ -24,7 +24,7 @@ const Filter = ({ value, onClickCategory }: Props) => {
                   ? 'filter__btn filter__btn--active'
                   : 'filter__btn'
               }
-              onClick={() => onClickCategory(idx)}
+              onClick={(): void => onClickCategory(idx)}
               type="button"
             >
               <p className="filter__text">{el}</p>

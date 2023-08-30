@@ -1,14 +1,27 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { IPizza, IFetchedPizza, IPizzasSlice } from '../../types/pizza'
+import { IPizza, IPizzasSlice, Status } from '../../types/pizza'
+import { IFetchPizza } from '../../types'
 
-export const fetchPizzas = createAsyncThunk<IPizza[], IFetchedPizza>(
+const initialState: IPizzasSlice = {
+  items: [],
+  status: Status.LOADING,
+}
+
+export const fetchPizzas = createAsyncThunk<IPizza[], IFetchPizza>(
   'pizza/fetchPizzasStatus',
-  async (params: IFetchedPizza) => {
-    const { limit, currentPage, searchValue, categoryId, sortType } = params
+  async params => {
+    const {
+      limit,
+      currentPage,
+      totalPages,
+      searchValue,
+      categoryId,
+      sortType,
+    } = params
 
-    const { data } = await axios.get(
-      `http://localhost:5001/api/pizzas?limit=${limit}&page=${currentPage}${
+    const { data } = await axios.get<IPizza[]>(
+      `http://localhost:5001/api/pizzas?limit=${limit}&totalPages=${totalPages}&page=${currentPage}${
         searchValue ? `&search=${searchValue}` : ''
       }${categoryId > 0 ? `&filter=${categoryId}` : ''}&sort=${sortType}`
     )
@@ -17,35 +30,27 @@ export const fetchPizzas = createAsyncThunk<IPizza[], IFetchedPizza>(
   }
 )
 
-const initialState: IPizzasSlice = {
-  items: [],
-  status: 'loading',
-}
-
 export const pizzaSlice = createSlice({
   name: 'pizza',
   initialState,
   reducers: {
-    setItems(state, action) {
+    setItems(state, action: PayloadAction<IPizza[]>) {
       state.items = action.payload
     },
   },
 
   extraReducers: builder => {
     builder.addCase(fetchPizzas.pending, state => {
-      state.status = 'loading'
+      state.status = Status.LOADING
       state.items = []
-      console.log('Йде відправлення запиту')
     })
     builder.addCase(fetchPizzas.fulfilled, (state, action) => {
       state.items = action.payload.pizzas
-      state.status = 'success'
-      console.log('Запит отримано')
+      state.status = Status.SUCCESS
     })
     builder.addCase(fetchPizzas.rejected, state => {
-      state.status = 'error'
+      state.status = Status.ERROR
       state.items = []
-      console.log('Помилка запиту')
     })
   },
 })

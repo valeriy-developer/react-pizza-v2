@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import IconBasket from '../components/icons/IconBasket'
 import IconArrowLeft from '../components/icons/IconArrowLeft'
@@ -7,16 +6,18 @@ import Button from '../components/Button'
 import CartItem from '../components/CartItem'
 import { clearItems } from '../redux/slices/cartSlice'
 import CartEmpty from '../components/CartEmpty'
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { ICartItem } from '../types/cart'
 
 const Cart = () => {
-  const dispatch = useDispatch()
-  const { items, totalPrice } = useSelector((state: any) => state.cart)
+  const dispatch = useAppDispatch()
+  const { items, totalPrice } = useAppSelector(state => state.cart)
 
-  const totalCount = items.reduce((sum: number, item: any) => {
+  const totalCount = items.reduce((sum: number, item: ICartItem) => {
     return sum + item.count
   }, 0)
 
-  const onClickClear = () => {
+  const onClickClear = (): void => {
     dispatch(clearItems())
   }
 
@@ -41,8 +42,8 @@ const Cart = () => {
         </button>
       </div>
       <ul className="cart__item-list">
-        {items.map((el: any, idx: number) => {
-          return <CartItem key={idx} {...el} />
+        {items.map((el: ICartItem) => {
+          return <CartItem key={Math.random()} {...el} />
         })}
       </ul>
       <div className="cart__bottom-block">

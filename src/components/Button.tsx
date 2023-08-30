@@ -1,12 +1,12 @@
 import { ReactNode } from 'react'
 
-interface Props {
+interface IProps {
   icon?: ReactNode
   text: string
   disabled?: boolean
 }
 
-const Button = ({ icon, text, disabled }: Props) => {
+const Button = ({ icon, text, disabled }: IProps) => {
   return (
     <button className="button" disabled={disabled} type="button">
       {icon}

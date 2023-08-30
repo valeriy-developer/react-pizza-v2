@@ -1,37 +1,30 @@
-import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import IconPlus from './icons/IconPlus'
 import { addItem } from '../redux/slices/cartSlice'
-
-interface Props {
-  id: number
-  title: string
-  price: number
-  imgUrl: string
-  types: number[]
-  size: number[]
-}
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { IPizza } from '../types/pizza'
 
 const doughs: string[] = ['Тонке', 'Традиційне']
 
-const Item = ({ id, title, price, imgUrl, types, size }: Props) => {
-  const dispatch = useDispatch()
+const Item = ({ id, title, price, imgUrl, types, size }: IPizza) => {
+  const dispatch = useAppDispatch()
 
-  const [activeDough, setActiveDough] = useState(0)
-  const [activeSize, setActiveSize] = useState(0)
-  const cartItem = useSelector((state: any) =>
-    state.cart.items.find((obj: any) => obj.id === id)
+  const [activeDough, setActiveDough] = useState<number>(0)
+  const [activeSize, setActiveSize] = useState<number>(0)
+  const cartItem = useAppSelector(state =>
+    state.cart.items.find((obj): boolean => obj.id === id)
   )
-  const addedCount = cartItem ? cartItem.count : 0
+  const addedCount: number = cartItem ? cartItem.count : 0
 
-  const onClickAdd = () => {
+  const onClickAdd = (): void => {
     const item = {
       id,
       title,
       price,
       imgUrl,
-      type: doughs[activeDough],
-      size: size[activeSize],
+      typeItem: doughs[activeDough],
+      sizeItem: size[activeSize],
+      count: 0,
     }
 
     dispatch(addItem(item))
@@ -46,7 +39,7 @@ const Item = ({ id, title, price, imgUrl, types, size }: Props) => {
           <ul className="item__dough-menu">
             {types.map((typeNum, idx) => {
               return (
-                <li key={idx} className="item__dough">
+                <li key={Math.random()} className="item__dough">
                   <button
                     className={
                       activeDough === idx
@@ -65,7 +58,7 @@ const Item = ({ id, title, price, imgUrl, types, size }: Props) => {
           <ul className="item__size-menu">
             {size.map((sizeNum, idx) => {
               return (
-                <li key={idx} className="item__size">
+                <li key={Math.random()} className="item__size">
                   <button
                     className={
                       activeSize === idx

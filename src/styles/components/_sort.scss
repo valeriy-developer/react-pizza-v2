@@ -95,6 +95,7 @@
   line-height: 100%;
   letter-spacing: 0.015em;
   text-transform: lowercase;
+  background-color: var(--white);
 
   @media (max-width: $br1) {
     font-size: 14px;

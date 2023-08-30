@@ -1,6 +1,14 @@
-import { IPizza } from './pizza'
-
 export interface ICartSlice {
   totalPrice: number
-  items: IPizza[]
+  items: ICartItem[]
+}
+
+export interface ICartItem {
+  id: string
+  title: string
+  price: number
+  imgUrl: string
+  count: number
+  typeItem: string
+  sizeItem: number
 }

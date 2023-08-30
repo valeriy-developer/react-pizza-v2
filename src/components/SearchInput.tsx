@@ -1,13 +1,13 @@
 import { ChangeEvent, useMemo, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import debounce from 'lodash.debounce'
 import IconSearch from './icons/IconSearch'
 import IconSearchClear from './icons/IconSearchClear'
 import { setSearchValue } from '../redux/slices/filterSlice'
+import { useAppDispatch } from '../redux/hooks'
 
 const SearchInput = () => {
   const inputRef = useRef<HTMLInputElement>(null)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const [value, setValue] = useState('')
 
   const updateSearchValue = useMemo(

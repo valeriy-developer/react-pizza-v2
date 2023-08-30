@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import IconArrowUp from './icons/IconArrowUp'
 import IconArrowDown from './icons/IconArrowDown'
 import { setSort } from '../redux/slices/filterSlice'
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { ISort } from '../types'
 
-export const sortList: { name: string; sortProperty: string }[] = [
+export const sortList: ISort[] = [
   {
     name: 'популярністю',
     sortProperty: 'rating',
@@ -20,8 +21,8 @@ export const sortList: { name: string; sortProperty: string }[] = [
 ]
 
 const Sort: React.FC = () => {
-  const dispatch = useDispatch()
-  const sort = useSelector((state: any) => state.filter.sort)
+  const dispatch = useAppDispatch()
+  const sort = useAppSelector(state => state.filter.sort)
   const [popupOpened, setPopupOpened] = useState(false)
   const sortRef = useRef<HTMLDivElement>(null)
 
@@ -29,7 +30,7 @@ const Sort: React.FC = () => {
     setPopupOpened(!popupOpened)
   }
 
-  const selectActiveItems = (obj: any) => {
+  const selectActiveItems = (obj: ISort) => {
     dispatch(setSort(obj))
     setPopupOpened(false)
   }

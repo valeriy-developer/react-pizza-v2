@@ -1,11 +1,12 @@
 import { Link, useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import IconCart from './icons/IconCart'
 import SearchInput from './SearchInput'
+import { useAppSelector } from '../redux/hooks'
+import { ICartItem } from '../types/cart'
 
 const Header = () => {
-  const { items, totalPrice } = useSelector((state: any) => state.cart)
-  const totalCount = items.reduce((sum: number, item: any) => {
+  const { items, totalPrice } = useAppSelector(state => state.cart)
+  const totalCount = items.reduce((sum: number, item: ICartItem) => {
     return sum + item.count
   }, 0)
 

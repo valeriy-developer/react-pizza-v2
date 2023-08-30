@@ -1,10 +1,13 @@
-export interface IFiltersParams {
+export interface ISort {
+  name: string
+  sortProperty: 'rating' | 'price' | 'title'
+}
+
+export interface IFetchPizza {
+  limit: number
+  currentPage: number
   searchValue: string
   categoryId: number
-  currentPage: number
+  sortType: ISort
   totalPages: number
-  sort: {
-    name: string
-    sortProperty: string
-  }
 }
