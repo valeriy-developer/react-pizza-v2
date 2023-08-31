@@ -82,8 +82,9 @@ const Home = () => {
           totalPages,
         })
       )
+      const payload = data.payload as IFetchPizza
 
-      dispatch(setTotalPages(data.payload.totalPages))
+      dispatch(setTotalPages(payload.totalPages))
     }
 
     window.scrollTo(0, 0)
