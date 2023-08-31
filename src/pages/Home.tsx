@@ -118,6 +118,7 @@ const Home = () => {
 
     return pizzas
   }
+
   return (
     <section className="home-1">
       <div className="container home-1__wrapper">

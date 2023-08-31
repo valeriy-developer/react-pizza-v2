@@ -8,31 +8,25 @@ const initialState: IPizzasSlice = {
   status: Status.LOADING,
 }
 
-export const fetchPizzas = createAsyncThunk<IPizza[], IFetchPizza>(
-  'pizza/fetchPizzasStatus',
-  async params => {
-    const {
-      limit,
-      currentPage,
-      totalPages,
-      searchValue,
-      categoryId,
-      sortType,
-    } = params
+export const fetchPizzas = createAsyncThunk<
+  {
+    currentPage: number
+    totalPages: number
+    pizzas: IPizza[]
+  },
+  IFetchPizza
+>('pizza/fetchPizzasStatus', async params => {
+  const { limit, currentPage, totalPages, searchValue, categoryId, sortType } =
+    params
 
-    const { data } = await axios.get<{
-      currentPage: number
-      totalPages: number
-      pizzas: IPizza[]
-    }>(
-      `http://localhost:5001/api/pizzas?limit=${limit}&totalPages=${totalPages}&page=${currentPage}${
-        searchValue ? `&search=${searchValue}` : ''
-      }${categoryId > 0 ? `&filter=${categoryId}` : ''}&sort=${sortType}`
-    )
+  const { data } = await axios.get(
+    `http://localhost:5001/api/pizzas?limit=${limit}&totalPages=${totalPages}&page=${currentPage}${
+      searchValue ? `&search=${searchValue}` : ''
+    }${categoryId > 0 ? `&filter=${categoryId}` : ''}&sort=${sortType}`
+  )
 
-    return data.pizzas
-  }
-)
+  return data
+})
 
 export const pizzaSlice = createSlice({
   name: 'pizza',
@@ -48,13 +42,10 @@ export const pizzaSlice = createSlice({
       state.status = Status.LOADING
       state.items = []
     })
-    builder.addCase(
-      fetchPizzas.fulfilled,
-      (state, action: PayloadAction<IPizza[]>) => {
-        state.items = action.payload
-        state.status = Status.SUCCESS
-      }
-    )
+    builder.addCase(fetchPizzas.fulfilled, (state, action) => {
+      state.items = action.payload.pizzas
+      state.status = Status.SUCCESS
+    })
     builder.addCase(fetchPizzas.rejected, state => {
       state.status = Status.ERROR
       state.items = []
