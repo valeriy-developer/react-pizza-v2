@@ -68,7 +68,7 @@ const Home = () => {
 
       isSearch.current = true
     }
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     const getPizzas = async () => {
