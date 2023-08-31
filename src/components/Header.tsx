@@ -22,7 +22,7 @@ const Header = () => {
             <p className="header__subtitle">Найсмачніша піца у всесвіті</p>
           </div>
         </Link>
-        <SearchInput />
+        {pathname !== '/cart' && <SearchInput />}
         {pathname !== '/cart' && (
           <Link className="header__right-link" to="/cart">
             <p className="header__price">{totalPrice} грн.</p>

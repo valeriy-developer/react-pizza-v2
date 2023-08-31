@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useRef } from 'react'
+import { ReactElement, useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import qs from 'qs'
 import Filter from '../components/Filter'
@@ -102,10 +102,13 @@ const Home = () => {
     return <SkeletonItem key={Math.random()} />
   })
 
-  const onClickCategory = (id: number) => {
-    dispatch(setCategoryId(id))
-    dispatch(setCurrentPage(1))
-  }
+  const onClickCategory = useCallback(
+    (id: number) => {
+      dispatch(setCategoryId(id))
+      dispatch(setCurrentPage(1))
+    },
+    [dispatch]
+  )
 
   const fetchStatus = () => {
     if (status === 'error') {
