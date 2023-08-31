@@ -1,7 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { ReactElement, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import qs from 'qs'
-import { useSelector } from 'react-redux'
 import Filter from '../components/Filter'
 import Item from '../components/Item'
 import SkeletonItem from '../components/SkeletonItem'
@@ -32,21 +31,6 @@ const Home = () => {
   const sortType = sort.sortProperty
   const limit = 4
 
-  const getPizzas = async () => {
-    const data = await dispatch(
-      fetchPizzas({
-        limit,
-        currentPage,
-        searchValue,
-        categoryId,
-        sortType,
-        totalPages,
-      })
-    )
-
-    dispatch(setTotalPages(data.payload.totalPages))
-  }
-
   useEffect(() => {
     if (isMounted.current) {
       const queryString = qs.stringify({
@@ -60,7 +44,7 @@ const Home = () => {
     }
 
     isMounted.current = true
-  }, [categoryId, sortType, currentPage])
+  }, [categoryId, sortType, currentPage, navigate])
 
   useEffect(() => {
     if (window.location.search) {
@@ -87,15 +71,30 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
+    const getPizzas = async () => {
+      const data = await dispatch(
+        fetchPizzas({
+          limit,
+          currentPage,
+          searchValue,
+          categoryId,
+          sortType,
+          totalPages,
+        })
+      )
+
+      dispatch(setTotalPages(data.payload.totalPages))
+    }
+
     window.scrollTo(0, 0)
 
     getPizzas()
 
     isSearch.current = false
-  }, [categoryId, sortType, searchValue, currentPage, totalPages])
+  }, [categoryId, sortType, searchValue, currentPage, totalPages, dispatch])
 
-  const pizzas: IPizza[] = items.map(el => {
-    return <Item key={Math.random()} {...el} />
+  const pizzas: ReactElement<IPizza>[] = items.map(el => {
+    return (<Item key={el.id} {...el} />) as ReactElement<IPizza>
   })
 
   const skeletons = [...new Array(10)].map(() => {

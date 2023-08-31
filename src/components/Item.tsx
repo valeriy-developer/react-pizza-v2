@@ -6,7 +6,14 @@ import { IPizza } from '../types/pizza'
 
 const doughs: string[] = ['Тонке', 'Традиційне']
 
-const Item = ({ id, title, price, imgUrl, types, size }: IPizza) => {
+const Item: React.FC<IPizza> = ({
+  id,
+  title,
+  price,
+  imgUrl,
+  types,
+  size,
+}: IPizza) => {
   const dispatch = useAppDispatch()
 
   const [activeDough, setActiveDough] = useState<number>(0)

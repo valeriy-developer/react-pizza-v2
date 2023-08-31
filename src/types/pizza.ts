@@ -10,13 +10,13 @@ export interface IPizzasSlice {
 }
 
 export interface IPizza {
-  category: number
   id: string
-  imgUrl: string
-  price: number
-  rating: number
-  size: Array<number>
   title: string
-  // type: []
+  price: number
+  imgUrl: string
   types: Array<number>
+  size: Array<number>
+  category: number
+  rating: number
+  // type: []
 }
