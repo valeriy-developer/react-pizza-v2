@@ -28,7 +28,7 @@ const Home = () => {
   const { categoryId, sort, currentPage, totalPages, searchValue } =
     useAppSelector(state => state.filter)
 
-  const sortType = sort.sortProperty
+  const sortType: string = sort.sortProperty
   const limit = 4
 
   useEffect(() => {

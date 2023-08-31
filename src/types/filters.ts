@@ -5,5 +5,5 @@ export interface IFiltersSlice {
   categoryId: number
   currentPage: number
   totalPages: number
-  sort: ISort[] | ISort
+  sort: ISort
 }

@@ -8,6 +8,6 @@ export interface IFetchPizza {
   currentPage: number
   searchValue: string
   categoryId: number
-  sortType: ISort
+  sortType: string
   totalPages: number
 }

@@ -36,8 +36,10 @@ const Sort: React.FC = () => {
   }
 
   useEffect(() => {
-    const outsideClick = (e: any) =>
-      !e.composedPath().includes(sortRef.current) ? setPopupOpened(false) : null
+    const outsideClick = (e: MouseEvent) =>
+      !e.composedPath().includes(sortRef.current as Node)
+        ? setPopupOpened(false)
+        : null
 
     document.body.addEventListener('click', outsideClick)
 
