@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
 import IconCart from './icons/IconCart'
 import SearchInput from './SearchInput'
 import { useAppSelector } from '../redux/hooks'
@@ -10,7 +11,18 @@ const Header = () => {
     return sum + item.count
   }, 0)
 
+  const isMounted = useRef(false)
+
   const { pathname } = useLocation()
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items)
+      localStorage.setItem('cart', json)
+    }
+
+    isMounted.current = true
+  }, [items, totalPrice])
 
   return (
     <header className="container header">
