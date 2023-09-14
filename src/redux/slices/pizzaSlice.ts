@@ -20,7 +20,9 @@ export const fetchPizzas = createAsyncThunk<
     params
 
   const { data } = await axios.get(
-    `https://react-pizza-v2-nu.vercel.app/api/pizzas?limit=${limit}&totalPages=${totalPages}&page=${currentPage}${
+    `${
+      import.meta.env.BASE_URL
+    }/api/pizzas?limit=${limit}&totalPages=${totalPages}&page=${currentPage}${
       searchValue ? `&search=${searchValue}` : ''
     }${categoryId > 0 ? `&filter=${categoryId}` : ''}&sort=${sortType}`
   )
