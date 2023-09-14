@@ -21,7 +21,7 @@ export const fetchPizzas = createAsyncThunk<
 
   const { data } = await axios.get(
     `${
-      import.meta.env.BASE_URL
+      import.meta.env.VITE_BASE_URL
     }/api/pizzas?limit=${limit}&totalPages=${totalPages}&page=${currentPage}${
       searchValue ? `&search=${searchValue}` : ''
     }${categoryId > 0 ? `&filter=${categoryId}` : ''}&sort=${sortType}`
