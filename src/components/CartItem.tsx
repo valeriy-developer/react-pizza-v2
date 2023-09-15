@@ -20,7 +20,8 @@ const CartItem = ({
     dispatch(plusItem(id))
   }
 
-  const onClickMinus = () => (count <= 0 ? null : dispatch(minusItem(id)))
+  const onClickMinus = () =>
+    count <= 1 ? dispatch(removeItem(id)) : dispatch(minusItem(id))
 
   const onClickRemove = (): void => {
     dispatch(removeItem(id))

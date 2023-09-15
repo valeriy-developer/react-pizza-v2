@@ -1,8 +1,3 @@
-export interface ICartSlice {
-  totalPrice: number
-  items: ICartItem[]
-}
-
 export interface ICartItem {
   id: string
   title: string
@@ -11,4 +6,9 @@ export interface ICartItem {
   count: number
   typeItem: string
   sizeItem: number
+}
+
+export interface ICartSlice {
+  totalPrice: number
+  items: ICartItem[]
 }
