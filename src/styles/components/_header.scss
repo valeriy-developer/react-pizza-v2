@@ -32,6 +32,7 @@
   z-index: 0;
   transition: color 0.2s ease;
   overflow: hidden;
+  padding: 0 vw(10);
 
   &::after,
   &::before {
@@ -104,6 +105,7 @@
 
   @media (max-width: $br1) {
     column-gap: 10px;
+    padding: 0;
   }
 
   @media (max-width: $br3) {
