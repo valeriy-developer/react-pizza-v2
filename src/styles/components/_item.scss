@@ -178,11 +178,11 @@
   font-weight: 700;
   font-size: vw(16);
   line-height: 100%;
-  color: #eb5a1e;
+  color: var(--accent);
   display: flex;
   align-items: center;
   column-gap: vw(8);
-  border: 1px solid #eb5a1e;
+  border: 1px solid var(--accent);
   border-radius: 30px;
   padding: 0 vw(14);
   background-color: var(--white);
@@ -211,7 +211,7 @@
   }
 
   &:hover {
-    background-color: #eb5a1e;
+    background-color: var(--accent);
     color: var(--white);
     path {
       fill: var(--white);
@@ -227,7 +227,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: #eb5a1e;
+  background-color: var(--accent);
   color: var(--white);
   border-radius: 50%;
   font-size: vw(12);

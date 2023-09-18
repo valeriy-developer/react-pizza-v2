@@ -70,7 +70,7 @@
 
     &.selected {
       a {
-        background-color: #eb5a1e;
+        background-color: var(--accent);
         color: var(--white);
         transition:
           color 0.3s ease,
@@ -90,8 +90,8 @@
       justify-content: center;
       text-align: center;
       background-color: transparent;
-      color: #eb5a1e;
-      border: 2px solid #eb5a1e;
+      color: var(--accent);
+      border: 2px solid var(--accent);
       border-radius: 50%;
       font-size: vw(18);
       line-height: 104%;

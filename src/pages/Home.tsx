@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import qs from 'qs'
 import Filter from '../components/Filter'
 import Item from '../components/Item'
-import SkeletonItem from '../components/SkeletonItem'
 import Pagination from '../components/Pagination'
 import {
   setCategoryId,
@@ -17,6 +16,7 @@ import ErrorPage from '../components/ErrorPage'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { IPizza } from '../types/pizza'
 import { IFetchPizza } from '../types'
+import Loader from '../components/Loader'
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -98,9 +98,9 @@ const Home = () => {
     return (<Item key={el.id} {...el} />) as ReactElement<IPizza>
   })
 
-  const skeletons = [...new Array(10)].map(() => {
-    return <SkeletonItem key={Math.random()} />
-  })
+  // const skeletons = [...new Array(10)].map(() => {
+  //   return <SkeletonItem key={Math.random()} />
+  // })
 
   const onClickCategory = useCallback(
     (id: number) => {
@@ -116,7 +116,7 @@ const Home = () => {
     }
 
     if (status === 'loading') {
-      return skeletons
+      return <Loader />
     }
 
     return pizzas
