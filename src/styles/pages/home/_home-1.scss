@@ -6,15 +6,25 @@
 
 .home-1__menu {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: vw(40);
+
+  @media (min-width: $br1) {
+    justify-content: space-between;
+    align-items: center;
+    margin-top: vw(40);
+  }
 
   @media (max-width: $br1) {
     flex-direction: column;
-    justify-content: center;
     row-gap: 14px;
     margin-top: 30px;
+  }
+}
+
+.home-1__filter-wrapper {
+  @media (max-width: $br1) {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
   }
 }
 
