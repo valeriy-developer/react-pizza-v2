@@ -44,7 +44,7 @@ const Header = () => {
             </div>
           </Link>
         )}
-        {pathname !== '/cart' && <SearchInput />}
+        {pathname !== '/cart' && <SearchInput wrappedClass="header__search" />}
         {pathname !== '/cart' && (
           <Link className="header__right-link" to="/cart">
             <p className="header__price">{totalPrice} грн.</p>
@@ -56,6 +56,9 @@ const Header = () => {
           </Link>
         )}
       </div>
+      {pathname !== '/cart' && (
+        <SearchInput wrappedClass="header__search header__search--mob" />
+      )}
     </header>
   )
 }

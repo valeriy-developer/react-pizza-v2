@@ -5,7 +5,11 @@ import IconSearchClear from './icons/IconSearchClear'
 import { setSearchValue } from '../redux/slices/filterSlice'
 import { useAppDispatch } from '../redux/hooks'
 
-const SearchInput = () => {
+interface IProps {
+  wrappedClass?: string
+}
+
+const SearchInput = ({ wrappedClass }: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
   const [value, setValue] = useState('')
@@ -30,7 +34,7 @@ const SearchInput = () => {
   }
 
   return (
-    <div className="input-wrapper">
+    <div className={`input-wrapper ${wrappedClass}`}>
       <div className="input__search-icon">
         <IconSearch />
       </div>
@@ -56,3 +60,7 @@ const SearchInput = () => {
 }
 
 export default SearchInput
+
+SearchInput.defaultProps = {
+  wrappedClass: null,
+}

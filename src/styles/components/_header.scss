@@ -19,7 +19,6 @@
   justify-content: space-between;
 
   @media (max-width: $br3) {
-    flex-direction: column;
     row-gap: 14px;
   }
 }
@@ -236,6 +235,23 @@
     @media (max-width: $br3) {
       width: 16px;
       height: 16px;
+    }
+  }
+}
+
+.header__search {
+  @media (max-width: $br3) {
+    display: none;
+  }
+
+  &--mob {
+    display: none;
+
+    @media (max-width: $br3) {
+      display: block;
+      max-width: 380px;
+      margin: 0 auto;
+      margin-top: 24px;
     }
   }
 }
