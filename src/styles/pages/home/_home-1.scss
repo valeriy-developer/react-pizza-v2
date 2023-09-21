@@ -17,6 +17,10 @@
 .home-1__menu {
   display: flex;
 
+  @media (min-width: $br3) {
+    margin-top: 20px;
+  }
+
   @media (min-width: $br1) {
     justify-content: space-between;
     align-items: center;
@@ -26,7 +30,6 @@
   @media (max-width: $br1) {
     flex-direction: column;
     row-gap: 14px;
-    // margin-top: 30px;
   }
 }
 
