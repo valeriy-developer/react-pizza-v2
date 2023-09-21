@@ -20,10 +20,18 @@
     display: block;
     width: vw(10);
     height: vw(6);
+    transition: transform 0.3s ease;
+    transform: rotate(0);
 
     @media (max-width: $br1) {
       width: 10px;
       height: 6px;
+    }
+  }
+
+  &--active {
+    svg {
+      transform: rotate(-180deg);
     }
   }
 }

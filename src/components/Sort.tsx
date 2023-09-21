@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import IconArrowUp from './icons/IconArrowUp'
 import IconArrowDown from './icons/IconArrowDown'
 import { setSort } from '../redux/slices/filterSlice'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
@@ -51,8 +50,12 @@ const Sort: React.FC = () => {
   return (
     <div ref={sortRef} className="sort">
       <button onClick={openPopup} className="sort__btn" type="button">
-        <span className="sort__arrow">
-          {popupOpened ? <IconArrowUp /> : <IconArrowDown />}
+        <span
+          className={
+            popupOpened ? 'sort__arrow sort__arrow--active' : 'sort__arrow'
+          }
+        >
+          <IconArrowDown />
         </span>
         <p className="sort__show-text">
           Сортування за:
