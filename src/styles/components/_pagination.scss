@@ -16,6 +16,9 @@
   }
 
   li {
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+
     &.previous {
       a {
         font-size: vw(24);
@@ -82,9 +85,8 @@
     a {
       font-family: 'Montserrat';
       font-weight: 700;
-      height: vw(50);
-      min-width: vw(50);
-      // padding: 0 vw(20);
+      height: vw(60);
+      min-width: vw(60);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -94,23 +96,26 @@
       border: 2px solid var(--accent);
       border-radius: 50%;
       font-size: vw(18);
-      line-height: 104%;
+      line-height: 100%;
       transition:
         color 0.3s ease,
         border 0.3s ease,
         background-color 0.3s ease;
 
+      &:hover {
+        background-color: var(--accent);
+        color: var(--white);
+      }
+
       @media (max-width: $br1) {
-        height: 44px;
-        min-width: 44px;
-        padding: 0 6px;
+        height: 54px;
+        min-width: 54px;
         font-size: 18px;
       }
 
       @media (max-width: $br4) {
-        height: 32px;
-        min-width: 32px;
-        padding: 0 6px;
+        height: 42px;
+        min-width: 42px;
         font-size: 16px;
       }
     }
