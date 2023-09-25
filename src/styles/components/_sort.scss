@@ -1,5 +1,11 @@
 .sort {
   position: relative;
+
+  &:hover {
+    .sort__btn {
+      opacity: 0.8;
+    }
+  }
 }
 
 .sort__btn {
@@ -8,6 +14,7 @@
   column-gap: vw(8);
   background-color: transparent;
   padding: vw(10) 0;
+  transition: opacity 0.3s ease;
 
   @media (max-width: $br1) {
     padding: 10px 0;
@@ -56,6 +63,7 @@
   font-weight: 400;
   color: #fe5f1e;
   position: relative;
+  transition: font-weight 0.3s ease;
 
   &::after {
     content: '';
@@ -104,6 +112,7 @@
   letter-spacing: 0.015em;
   text-transform: lowercase;
   background-color: var(--white);
+  transition: background-color 0.3s ease;
 
   @media (max-width: $br1) {
     font-size: 14px;
