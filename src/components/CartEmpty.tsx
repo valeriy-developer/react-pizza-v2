@@ -12,7 +12,7 @@ const CartEmpty: React.FC = () => {
           <br /> Щоб замовити піцу, перейдіть на головну сторінку.
         </p>
         <IconEmptyCart />
-        <Link to="/" className="cart__back-btn">
+        <Link to="/" className="empty-cart__btn">
           <Button text="Повернутись назад" />
         </Link>
       </div>
