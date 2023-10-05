@@ -18,5 +18,4 @@ export interface IPizza {
   size: Array<number>
   category: number
   rating: number
-  // type: []
 }

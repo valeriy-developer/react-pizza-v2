@@ -1,0 +1,89 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+
+  &--opened {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.modal__backdrop {
+  background-color: var(--black);
+  opacity: 0.7;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 70vh;
+  width: 60vw;
+  background-color: var(--white);
+  border-radius: vw(20);
+
+  @media (max-width: $br1) {
+    width: 90vw;
+    height: 80vh;
+    border-radius: 20px;
+  }
+}
+
+.modal__header {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: vw(20);
+
+  @media (max-width: $br1) {
+    padding: 18px;
+  }
+}
+
+.modal__close-btn {
+  position: relative;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: vw(15);
+
+  @media (max-width: $br1) {
+    padding: 20px;
+  }
+}
+
+.modal__line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--black);
+
+  &:first-of-type {
+    transform: rotate(45deg);
+  }
+
+  &:last-of-type {
+    transform: rotate(-45deg);
+  }
+}
+
+.modal__content {
+  padding: 0 vw(20);
+
+  @media (max-width: $br1) {
+    padding: 0 14px;
+  }
+}
