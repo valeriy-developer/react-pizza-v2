@@ -1,0 +1,66 @@
+.input {
+  position: relative;
+  max-width: 100%;
+
+  input {
+    position: relative;
+    width: 100%;
+    bottom: vw(6);
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: vw(18);
+    line-height: 1em;
+
+    @media (max-width: $br1) {
+      bottom: 5px;
+      font-size: 14px;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: vw(-4);
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #909090;
+    transition: background-color 0.3s ease;
+
+    @media (max-width: $br1) {
+      bottom: -2px;
+    }
+  }
+
+  &--active {
+    .input__label {
+      transform: translateY(vw(-25));
+      font-size: vw(14);
+    }
+
+    &::before {
+      background-color: var(--accent);
+    }
+  }
+}
+
+.input__label {
+  position: absolute;
+  left: 0;
+  bottom: vw(8);
+  pointer-events: none;
+  z-index: 1;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: vw(18);
+  color: #909090;
+  line-height: 1em;
+  transition:
+    font-size 0.3s ease,
+    transform 0.3s ease;
+
+  @media (max-width: $br1) {
+    font-size: 14px;
+    bottom: 7px;
+  }
+}

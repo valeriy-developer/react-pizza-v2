@@ -1,0 +1,44 @@
+.form__title {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-size: vw(32);
+  letter-spacing: 0.01em;
+
+  @media (max-width: $br1) {
+    font-size: 28px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
+  }
+}
+
+.form__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: vw(38);
+  margin-top: vw(54);
+  max-width: vw(600);
+
+  @media (max-width: $br1) {
+    margin-top: 32px;
+    row-gap: 24px;
+    max-width: 75%;
+  }
+
+  @media (max-width: $br3) {
+    max-width: 85%;
+  }
+
+  @media (max-width: $br4) {
+    max-width: 100%;
+  }
+}
+
+.form__btn {
+  margin-top: vw(32);
+
+  @media (max-width: $br1) {
+    margin-top: 24px;
+  }
+}

@@ -1,42 +1,42 @@
-.input-wrapper {
+.search-input {
   position: relative;
   min-width: vw(290);
 
   @media (max-width: $br1) {
     min-width: 150px;
   }
+
+  input {
+    width: 100%;
+    border: 1px solid #909090;
+    border-radius: 10px;
+    padding: vw(8) vw(14);
+    padding-right: vw(40);
+    padding-left: vw(40);
+    transition: all 0.2s ease;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: vw(16);
+    color: black;
+
+    &:focus {
+      border: 1px solid #282828;
+    }
+
+    &::placeholder {
+      color: #909090;
+    }
+
+    @media (max-width: $br1) {
+      padding: 8px;
+      padding-left: 26px;
+      padding-right: 26px;
+      font-size: 14px;
+    }
+  }
 }
 
-.input {
-  width: 100%;
-  border: 1px solid #909090;
-  border-radius: 10px;
-  padding: vw(8) vw(14);
-  padding-right: vw(40);
-  padding-left: vw(40);
-  transition: all 0.2s ease;
-  font-family: 'Montserrat';
-  font-weight: 400;
-  font-size: vw(16);
-  color: black;
-
-  &:focus {
-    border: 1px solid #282828;
-  }
-
-  &::placeholder {
-    color: #909090;
-  }
-
-  @media (max-width: $br1) {
-    padding: 8px;
-    padding-left: 26px;
-    padding-right: 26px;
-    font-size: 14px;
-  }
-}
-
-.input__close-icon {
+.search-input__close-icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -60,7 +60,7 @@
   }
 }
 
-.input__search-icon {
+.search-input__icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

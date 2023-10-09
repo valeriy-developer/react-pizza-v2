@@ -17,6 +17,12 @@ const Modal = ({ children, isOpened, onClose }: IProps) => {
     [onClose]
   )
 
+  if (isOpened) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = 'auto'
+  }
+
   return (
     <div className={!isOpened ? 'modal' : 'modal modal--opened'}>
       <div
@@ -45,7 +51,3 @@ const Modal = ({ children, isOpened, onClose }: IProps) => {
 }
 
 export default Modal
-
-// Modal.defaultProps = {
-//   isOpened: false,
-// }

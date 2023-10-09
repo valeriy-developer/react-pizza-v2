@@ -10,6 +10,7 @@ import CartEmpty from '../components/CartEmpty'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { ICartItem } from '../types/cart'
 import Modal from '../components/Modal'
+import Form from '../components/Form'
 
 const Cart = () => {
   const dispatch = useAppDispatch()
@@ -79,7 +80,7 @@ const Cart = () => {
         </div>
       </div>
       <Modal onClose={closeHandler} isOpened={modalOpened}>
-        Hello World
+        <Form />
       </Modal>
     </>
   )

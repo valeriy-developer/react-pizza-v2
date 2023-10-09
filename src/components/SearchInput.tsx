@@ -34,8 +34,8 @@ const SearchInput = ({ wrappedClass }: IProps) => {
   }
 
   return (
-    <div className={`input-wrapper ${wrappedClass}`}>
-      <div className="input__search-icon">
+    <div className={`search-input ${wrappedClass}`}>
+      <div className="search-input__icon">
         <IconSearch />
       </div>
       <input
@@ -43,13 +43,12 @@ const SearchInput = ({ wrappedClass }: IProps) => {
         value={value}
         onChange={onChangeInput}
         type="text"
-        className="input"
         placeholder="Пошук піци..."
       />
       {value && (
         <button
           onClick={onCloseInput}
-          className="input__close-icon"
+          className="search-input__close-icon"
           type="button"
         >
           <IconSearchClear />
