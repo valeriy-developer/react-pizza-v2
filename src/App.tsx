@@ -3,18 +3,21 @@ import Header from './components/Header'
 import Cart from './pages/Cart'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
+import FormContextProvider from './context/FormContextProvider'
 
 const App = () => {
   return (
     <div className="app">
-      <div className="wrapper">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
+      <FormContextProvider>
+        <div className="wrapper">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </FormContextProvider>
     </div>
   )
 }

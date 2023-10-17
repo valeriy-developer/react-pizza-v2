@@ -1,12 +1,15 @@
-import { KeyboardEventHandler, useCallback } from 'react'
+import classNames from 'classnames'
+import { KeyboardEventHandler, useCallback, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 
 interface IProps {
   children: React.ReactNode
   isOpened: boolean
   onClose: () => void
+  wrappedClass?: string
 }
 
-const Modal = ({ children, isOpened, onClose }: IProps) => {
+const Modal = ({ children, isOpened, onClose, wrappedClass }: IProps) => {
   const onKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
     event => {
       if (event.key === 'Escape') {
@@ -17,14 +20,18 @@ const Modal = ({ children, isOpened, onClose }: IProps) => {
     [onClose]
   )
 
-  if (isOpened) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = 'auto'
-  }
+  useEffect(() => {
+    if (isOpened === true) {
+      document.body.classList.add('scroll-fixed')
+    } else {
+      document.body.classList.remove('scroll-fixed')
+    }
+  }, [isOpened])
 
-  return (
-    <div className={!isOpened ? 'modal' : 'modal modal--opened'}>
+  const modalContent = (
+    <div
+      className={classNames('modal', isOpened && 'modal--opened', wrappedClass)}
+    >
       <div
         className="modal__backdrop"
         onClick={() => onClose()}
@@ -48,6 +55,12 @@ const Modal = ({ children, isOpened, onClose }: IProps) => {
       </div>
     </div>
   )
+
+  return <>{createPortal(modalContent, document.body)}</>
 }
 
 export default Modal
+
+Modal.defaultProps = {
+  wrappedClass: null,
+}

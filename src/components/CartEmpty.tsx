@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import IconEmptyCart from './icons/IconEmptyCart'
 import Button from './Button'
 
 const CartEmpty: React.FC = () => {
+  const navigate = useNavigate()
+
+  const backHome = () => {
+    navigate('/')
+  }
+
   return (
     <div className="empty-cart">
       <div className="container empty-cart__wrapper">
@@ -12,9 +18,11 @@ const CartEmpty: React.FC = () => {
           <br /> Щоб замовити піцу, перейдіть на головну сторінку.
         </p>
         <IconEmptyCart />
-        <Link to="/" className="empty-cart__btn">
-          <Button text="Повернутись назад" />
-        </Link>
+        <Button
+          text="Повернутись назад"
+          className="empty-cart__btn"
+          onClick={backHome}
+        />
       </div>
     </div>
   )

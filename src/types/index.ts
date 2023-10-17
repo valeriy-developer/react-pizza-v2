@@ -11,3 +11,8 @@ export interface IFetchPizza {
   sortType: string
   totalPages: number
 }
+
+export interface IForm {
+  phone: string
+  email: string
+}

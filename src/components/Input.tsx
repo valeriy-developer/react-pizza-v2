@@ -1,23 +1,34 @@
 import { forwardRef, useState } from 'react'
 import classNames from 'classnames'
+import { Control, useController } from 'react-hook-form'
+import { IForm } from '../types'
 
 interface IProps {
   className?: string
-  name: string
+  name: keyof IForm
+  control: Control<IForm>
   text: string
-  inputValue: string
-  onChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void
+  type?: string
+  isInvalid: boolean
 }
 
 const Input = forwardRef<HTMLInputElement, IProps>(
-  ({ className, name, text, inputValue, onChangeInput }, ref) => {
+  ({ className, name, text, type, control, isInvalid, ...rest }, ref) => {
     const [isFocused, setIsFocused] = useState<boolean>(false)
+    const data = useController({ control, name })
+
+    // const emailValue = useWatch({ control, defaultValue: '', name })
+
+    const blurHandler = () => {
+      data.field.onBlur()
+      setIsFocused(false)
+    }
 
     return (
       <div
         className={classNames(
           'input',
-          (isFocused || inputValue) && 'input--active',
+          (data.field.value || isFocused) && 'input--active',
           className
         )}
       >
@@ -26,14 +37,14 @@ const Input = forwardRef<HTMLInputElement, IProps>(
         </label>
         <input
           id={name}
+          type={type}
           ref={ref}
-          // data-invalid={isInvalid}
-          // data-filled={!isInvalid && !!selectedValue}
           name={name}
-          value={inputValue}
-          onChange={event => onChangeInput(event)}
-          onFocus={() => setIsFocused(!isFocused)}
+          onFocus={() => setIsFocused(true)}
+          {...rest}
+          onBlur={blurHandler}
         />
+        {isInvalid && <p className="input__error">Спробуйте ще раз</p>}
       </div>
     )
   }
@@ -44,4 +55,5 @@ export default Input
 
 Input.defaultProps = {
   className: '',
+  type: 'text',
 }

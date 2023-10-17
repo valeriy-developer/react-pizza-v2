@@ -7,14 +7,22 @@ interface IProps {
   disabled?: boolean
   onClick?: () => void
   className?: string
+  typeName?: 'button' | 'submit'
 }
 
-const Button = ({ icon, text, disabled, onClick, className }: IProps) => {
+const Button = ({
+  icon,
+  text,
+  disabled,
+  onClick,
+  className,
+  typeName,
+}: IProps) => {
   return (
     <button
       className={classNames('button', className)}
       disabled={disabled}
-      type="button"
+      type={typeName === 'submit' ? 'submit' : 'button'}
       onClick={onClick}
     >
       {icon}
@@ -30,4 +38,5 @@ Button.defaultProps = {
   disabled: null,
   onClick: null,
   className: '',
+  typeName: 'button',
 }

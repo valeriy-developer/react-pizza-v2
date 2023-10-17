@@ -35,7 +35,12 @@
   &--active {
     .input__label {
       transform: translateY(vw(-25));
-      font-size: vw(14);
+      font-size: vw(10);
+
+      @media (max-width: $br1) {
+        transform: translateY(-18px);
+        font-size: 8px;
+      }
     }
 
     &::before {
@@ -62,5 +67,19 @@
   @media (max-width: $br1) {
     font-size: 14px;
     bottom: 7px;
+  }
+}
+
+.input__error {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  color: red;
+  font-size: vw(12);
+  position: absolute;
+  bottom: vw(-24);
+
+  @media (max-width: $br1) {
+    font-size: 10px;
+    bottom: -20px;
   }
 }

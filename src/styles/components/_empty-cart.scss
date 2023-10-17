@@ -61,24 +61,21 @@
 
 .empty-cart__btn {
   margin-top: vw(74);
+  background-color: var(--white);
+  color: #cacaca;
+  border: 1px solid #d3d3d3;
+  transition: all 0.2s ease;
 
-  button {
-    background-color: var(--white);
-    color: #cacaca;
-    border: 1px solid #d3d3d3;
+  path {
     transition: all 0.2s ease;
+  }
+
+  &:hover {
+    background-color: #282828;
+    color: var(--white);
 
     path {
-      transition: all 0.2s ease;
-    }
-
-    &:hover {
-      background-color: #282828;
-      color: var(--white);
-
-      path {
-        stroke: var(--white);
-      }
+      stroke: var(--white);
     }
   }
 
