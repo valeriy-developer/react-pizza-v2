@@ -1,5 +1,5 @@
 import { Control, UseFormRegister, useWatch } from 'react-hook-form'
-import { useCallback, useEffect, useState, useMemo } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
 import Input from './Input'
@@ -49,12 +49,12 @@ const SearchCity = ({
     setCities(newData)
   }, [cityValue])
 
-  const debouncedGetDataNovaPoshta = useMemo(
-    () =>
-      debounce(() => {
-        getDataNovaPoshta()
-      }, 600),
-    [getDataNovaPoshta]
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedGetDataNovaPoshta = useCallback(
+    debounce(() => {
+      getDataNovaPoshta()
+    }, 600),
+    []
   )
 
   useEffect(() => {
@@ -64,13 +64,11 @@ const SearchCity = ({
   const onClickCity = (text: string) => {
     setClickedCity(text)
     changeCityValue('city', text)
-    // setIsModalOpened(false)
   }
 
   const swapToInput = () => {
     setClickedCity('')
     changeCityValue('city', '')
-    // setIsModalOpened(false)
   }
 
   const onChangeFocus = (isFocused: boolean) => {
@@ -84,7 +82,9 @@ const SearchCity = ({
       <div className="search-city__wrapper">
         {clickedCity === '' ? (
           <Input
-            {...register('city', { required: true })}
+            {...register('city', {
+              required: true,
+            })}
             text="Назва міста..."
             control={control}
             isInvalid={isInvalid}
