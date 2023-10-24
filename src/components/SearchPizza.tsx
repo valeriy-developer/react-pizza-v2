@@ -9,7 +9,7 @@ interface IProps {
   wrappedClass?: string
 }
 
-const SearchInput = ({ wrappedClass }: IProps) => {
+const SearchPizza = ({ wrappedClass }: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
   const [value, setValue] = useState('')
@@ -58,8 +58,8 @@ const SearchInput = ({ wrappedClass }: IProps) => {
   )
 }
 
-export default SearchInput
+export default SearchPizza
 
-SearchInput.defaultProps = {
+SearchPizza.defaultProps = {
   wrappedClass: null,
 }

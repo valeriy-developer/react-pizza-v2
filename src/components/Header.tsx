@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useEffect, useRef } from 'react'
 import IconCart from './icons/IconCart'
-import SearchInput from './SearchInput'
+import SearchPizza from './SearchPizza'
 import { useAppSelector } from '../redux/hooks'
 import { ICartItem } from '../types/cart'
 
@@ -44,7 +44,7 @@ const Header = () => {
             </div>
           </Link>
         )}
-        {pathname !== '/cart' && <SearchInput wrappedClass="header__search" />}
+        {pathname !== '/cart' && <SearchPizza wrappedClass="header__search" />}
         {pathname !== '/cart' && (
           <Link className="header__right-link" to="/cart">
             <p className="header__price">{totalPrice} грн.</p>
@@ -57,7 +57,7 @@ const Header = () => {
         )}
       </div>
       {pathname !== '/cart' && (
-        <SearchInput wrappedClass="header__search header__search--mob" />
+        <SearchPizza wrappedClass="header__search header__search--mob" />
       )}
     </header>
   )

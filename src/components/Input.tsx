@@ -10,18 +10,39 @@ interface IProps {
   text: string
   type?: string
   isInvalid: boolean
+  focusChanged?: (isFocused: boolean) => void
+  autocomplete?: string
 }
 
 const Input = forwardRef<HTMLInputElement, IProps>(
-  ({ className, name, text, type, control, isInvalid, ...rest }, ref) => {
+  (
+    {
+      className,
+      name,
+      text,
+      type,
+      control,
+      isInvalid,
+      focusChanged,
+      autocomplete,
+      ...rest
+    },
+    ref
+  ) => {
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const data = useController({ control, name })
 
-    // const emailValue = useWatch({ control, defaultValue: '', name })
+    const changeFocus = (focused: boolean) => {
+      setIsFocused(focused)
+
+      if (focusChanged) {
+        focusChanged(focused)
+      }
+    }
 
     const blurHandler = () => {
       data.field.onBlur()
-      setIsFocused(false)
+      changeFocus(false)
     }
 
     return (
@@ -40,9 +61,10 @@ const Input = forwardRef<HTMLInputElement, IProps>(
           type={type}
           ref={ref}
           name={name}
-          onFocus={() => setIsFocused(true)}
+          onFocus={() => changeFocus(true)}
           {...rest}
           onBlur={blurHandler}
+          autoComplete={autocomplete}
         />
         {isInvalid && <p className="input__error">Спробуйте ще раз</p>}
       </div>
@@ -56,4 +78,6 @@ export default Input
 Input.defaultProps = {
   className: '',
   type: 'text',
+  focusChanged: () => {},
+  autocomplete: 'on',
 }

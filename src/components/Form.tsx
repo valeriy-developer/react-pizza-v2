@@ -10,6 +10,7 @@ import { FormContext } from '../context/FormContextProvider'
 import removeLocalCart from '../utils/removeLocalCart'
 import { useAppDispatch } from '../redux/hooks'
 import { clearItems } from '../redux/slices/cartSlice'
+import SearchCity from './SearchCity'
 
 const Form = () => {
   const {
@@ -17,6 +18,7 @@ const Form = () => {
     handleSubmit,
     control,
     formState: { errors },
+    setValue,
   } = useForm<IForm>({
     mode: 'all',
   })
@@ -42,6 +44,8 @@ const Form = () => {
         removeLocalCart()
       }, 0)
     }
+
+    console.log(data)
   }
 
   const backHome = () => {
@@ -60,17 +64,21 @@ const Form = () => {
               required: true,
               pattern: email,
             })}
-            type="email"
-            text="Enter your email..."
+            text="Введіть електронну адресу..."
             control={control}
             isInvalid={!!errors.email}
           />
           <Input
             {...register('phone', { required: true, pattern: phone })}
-            type="phone"
-            text="Enter your phone number..."
+            text="Введіть номер моб. телефону..."
             control={control}
             isInvalid={!!errors.phone}
+          />
+          <SearchCity
+            control={control}
+            register={register}
+            isInvalid={!!errors.city}
+            changeCityValue={setValue}
           />
         </div>
         <Button text="Надіслати" className="form__btn" typeName="submit" />

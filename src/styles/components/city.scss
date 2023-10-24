@@ -1,0 +1,20 @@
+.city {
+  &:hover {
+    .city__btn {
+      background-color: #dbdbdb;
+    }
+  }
+}
+
+.city__btn {
+  background-color: transparent;
+  width: 100%;
+  text-align: start;
+  padding: vw(10) 0;
+  transition: background-color 0.3s ease;
+  padding-left: vw(16);
+
+  @media (max-width: $br1) {
+    padding-left: 12px;
+  }
+}
