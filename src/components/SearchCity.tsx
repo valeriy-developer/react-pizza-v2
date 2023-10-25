@@ -1,5 +1,5 @@
 import { Control, UseFormRegister, useWatch } from 'react-hook-form'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useMemo } from 'react'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
 import Input from './Input'
@@ -49,12 +49,13 @@ const SearchCity = ({
     setCities(newData)
   }, [cityValue])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedGetDataNovaPoshta = useCallback(
-    debounce(() => {
-      getDataNovaPoshta()
-    }, 600),
-    []
+  const debouncedGetDataNovaPoshta = useMemo(
+    () =>
+      debounce(() => {
+        getDataNovaPoshta()
+        console.log('pending')
+      }, 600),
+    [getDataNovaPoshta]
   )
 
   useEffect(() => {
