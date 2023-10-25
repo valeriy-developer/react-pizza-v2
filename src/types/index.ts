@@ -43,7 +43,27 @@ export interface IAreaData {
   }[]
 }
 
-export interface IDataNovaPoshta {
+export interface ICityNovaPoshta {
   cityName: string
   province: string
+  cityRef: string
+}
+
+export interface IDepartmentsData {
+  data: {
+    Description: string
+    Ref: string
+    CityRef: string
+  }[]
+}
+
+export interface IDepartmentNovaPoshta {
+  department: string
+  departmentRef: string
+  cityRef: string
+}
+
+export interface IClickedCity {
+  cityName: string
+  cityRef: string
 }

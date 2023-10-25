@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState, useMemo } from 'react'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
 import Input from './Input'
-import { IAreaData, IDataNovaPoshta, IForm } from '../types'
+import { IAreaData, ICityNovaPoshta, IClickedCity, IForm } from '../types'
 import City from './City'
 
 interface IProps {
@@ -11,6 +11,10 @@ interface IProps {
   register: UseFormRegister<IForm>
   isInvalid: boolean
   changeCityValue: (name: 'city' | 'phone' | 'email', value: string) => void
+  cities: ICityNovaPoshta[]
+  setCities: React.Dispatch<React.SetStateAction<ICityNovaPoshta[]>>
+  clickedCity: IClickedCity
+  setClickedCity: React.Dispatch<React.SetStateAction<IClickedCity>>
 }
 
 const SearchCity = ({
@@ -18,13 +22,15 @@ const SearchCity = ({
   register,
   isInvalid,
   changeCityValue,
+  cities,
+  setCities,
+  clickedCity,
+  setClickedCity,
 }: IProps) => {
-  const [cities, setCities] = useState<IDataNovaPoshta[]>([])
   const cityValue = useWatch({ control, name: 'city', defaultValue: '' })
-  const [clickedCity, setClickedCity] = useState<string>('')
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
 
-  const getDataNovaPoshta = useCallback(async () => {
+  const getCitiesNovaPoshta = useCallback(async () => {
     const { data } = await axios.post<IAreaData>(
       `https://api.novaposhta.ua/v2.0/json/`,
       {
@@ -39,35 +45,36 @@ const SearchCity = ({
       }
     )
 
-    const newData: IDataNovaPoshta[] = data.data.map(item => {
+    const newData: ICityNovaPoshta[] = data.data.map(item => {
       return {
         cityName: item.Description,
         province: item.AreaDescription,
+        cityRef: item.Ref,
       }
     })
 
     setCities(newData)
-  }, [cityValue])
+  }, [cityValue, setCities])
 
-  const debouncedGetDataNovaPoshta = useMemo(
+  const debouncedGetCitiesNovaPoshta = useMemo(
     () =>
       debounce(() => {
-        getDataNovaPoshta()
+        getCitiesNovaPoshta()
       }, 600),
-    [getDataNovaPoshta]
+    [getCitiesNovaPoshta]
   )
 
   useEffect(() => {
-    debouncedGetDataNovaPoshta()
-  }, [cityValue, debouncedGetDataNovaPoshta])
+    debouncedGetCitiesNovaPoshta()
+  }, [cityValue, debouncedGetCitiesNovaPoshta])
 
-  const onClickCity = (text: string) => {
+  const onClickCity = (text: string, ref: string) => {
     changeCityValue('city', text)
-    setClickedCity(text)
+    setClickedCity({ cityName: text, cityRef: ref })
   }
 
   const swapToInput = () => {
-    setClickedCity('')
+    setClickedCity({ cityName: '', cityRef: '' })
     changeCityValue('city', '')
   }
 
@@ -80,7 +87,7 @@ const SearchCity = ({
   return (
     <div className="search-city">
       <div className="search-city__wrapper">
-        {clickedCity === '' ? (
+        {clickedCity.cityName === '' ? (
           <Input
             {...register('city', {
               required: true,
@@ -98,7 +105,7 @@ const SearchCity = ({
             className="search-city__city-name"
             onClick={swapToInput}
           >
-            {clickedCity}
+            {clickedCity.cityName}
           </button>
         )}
       </div>
@@ -113,6 +120,7 @@ const SearchCity = ({
               <City
                 key={el.cityName}
                 cityName={el.cityName}
+                cityRef={el.cityRef}
                 province={el.province}
                 handleClick={onClickCity}
               />

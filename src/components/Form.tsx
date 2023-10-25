@@ -1,9 +1,16 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useContext } from 'react'
+import { useContext, useState, useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import Button from './Button'
 import Input from './Input'
-import { IForm } from '../types'
+import {
+  ICityNovaPoshta,
+  IClickedCity,
+  IDepartmentNovaPoshta,
+  IDepartmentsData,
+  IForm,
+} from '../types'
 import { email, phone } from '../constants/regex'
 import Modal from './Modal'
 import { FormContext } from '../context/FormContextProvider'
@@ -29,16 +36,42 @@ const Form = () => {
   })
 
   const dispatch = useAppDispatch()
-
   const navigate = useNavigate()
-
   const { setFormOpened, setCompleteModalOpened, completeModalOpened } =
     useContext(FormContext)
+  const [cities, setCities] = useState<ICityNovaPoshta[]>([])
+  const [clickedCity, setClickedCity] = useState<IClickedCity>({
+    cityName: '',
+    cityRef: '',
+  })
+  const [departments, setDepartments] = useState<IDepartmentNovaPoshta[]>([])
 
-  const closeHandler = () => {
-    setFormOpened(false)
-    setCompleteModalOpened(false)
-  }
+  const getDepartmentNovaPoshta = useCallback(async () => {
+    const { data } = await axios.post<IDepartmentsData>(
+      `https://api.novaposhta.ua/v2.0/json/`,
+      {
+        apiKey: `${import.meta.env.VITE_NOVA_POSHTA_API_KEY}`,
+        modelName: 'Address',
+        calledMethod: 'getWarehouses',
+        methodProperties: {
+          CityRef: clickedCity.cityRef,
+          Page: '1',
+          Limit: '50',
+          Language: 'UA',
+        },
+      }
+    )
+
+    const newData: IDepartmentNovaPoshta[] = data.data.map(item => {
+      return {
+        department: item.Description,
+        departmentRef: item.Ref,
+        cityRef: item.CityRef,
+      }
+    })
+
+    setDepartments(newData)
+  }, [clickedCity.cityRef])
 
   const onSubmit: SubmitHandler<IForm> = data => {
     if (data) {
@@ -53,11 +86,22 @@ const Form = () => {
     console.log(data)
   }
 
+  const closeHandler = () => {
+    setFormOpened(false)
+    setCompleteModalOpened(false)
+  }
+
   const backHome = () => {
     navigate('/')
     setCompleteModalOpened(false)
     document.body.classList.remove('scroll-fixed')
   }
+
+  useEffect(() => {
+    if (clickedCity.cityName) {
+      getDepartmentNovaPoshta()
+    }
+  }, [clickedCity, getDepartmentNovaPoshta])
 
   return (
     <>
@@ -84,7 +128,16 @@ const Form = () => {
             register={register}
             isInvalid={!!errors.city}
             changeCityValue={setValue}
+            cities={cities}
+            setCities={setCities}
+            clickedCity={clickedCity}
+            setClickedCity={setClickedCity}
           />
+          {departments.map(item => (
+            <li key={item.departmentRef} className="form__department">
+              {item.department}
+            </li>
+          ))}
         </div>
         <Button
           text="Надіслати"
