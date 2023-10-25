@@ -53,7 +53,6 @@ const SearchCity = ({
     () =>
       debounce(() => {
         getDataNovaPoshta()
-        console.log('pending')
       }, 600),
     [getDataNovaPoshta]
   )
@@ -63,8 +62,8 @@ const SearchCity = ({
   }, [cityValue, debouncedGetDataNovaPoshta])
 
   const onClickCity = (text: string) => {
-    setClickedCity(text)
     changeCityValue('city', text)
+    setClickedCity(text)
   }
 
   const swapToInput = () => {

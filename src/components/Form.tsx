@@ -17,10 +17,15 @@ const Form = () => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
     setValue,
   } = useForm<IForm>({
     mode: 'all',
+    defaultValues: {
+      city: '',
+      email: '',
+      phone: '',
+    },
   })
 
   const dispatch = useAppDispatch()
@@ -81,7 +86,12 @@ const Form = () => {
             changeCityValue={setValue}
           />
         </div>
-        <Button text="Надіслати" className="form__btn" typeName="submit" />
+        <Button
+          text="Надіслати"
+          className="form__btn"
+          typeName="submit"
+          disabled={!isDirty || !isValid}
+        />
       </form>
       <Modal
         isOpened={completeModalOpened}
