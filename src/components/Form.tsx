@@ -18,6 +18,7 @@ import removeLocalCart from '../utils/removeLocalCart'
 import { useAppDispatch } from '../redux/hooks'
 import { clearItems } from '../redux/slices/cartSlice'
 import SearchCity from './SearchCity'
+import DepartmentsList from './DepartmentsList'
 
 const Form = () => {
   const {
@@ -101,6 +102,8 @@ const Form = () => {
     if (clickedCity.cityName) {
       getDepartmentNovaPoshta()
     }
+
+    setDepartments([])
   }, [clickedCity, getDepartmentNovaPoshta])
 
   return (
@@ -133,11 +136,9 @@ const Form = () => {
             clickedCity={clickedCity}
             setClickedCity={setClickedCity}
           />
-          {departments.map(item => (
-            <li key={item.departmentRef} className="form__department">
-              {item.department}
-            </li>
-          ))}
+          {departments.length ? (
+            <DepartmentsList departments={departments} />
+          ) : null}
         </div>
         <Button
           text="Надіслати"

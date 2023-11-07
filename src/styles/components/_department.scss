@@ -1,0 +1,36 @@
+.department {
+  position: relative;
+  background-color: transparent;
+  width: 100%;
+  padding: vw(10) 0;
+  transition: background-color 0.3s ease;
+  padding-left: vw(16);
+
+  &:hover {
+    background-color: #dbdbdb;
+  }
+
+  @media (max-width: $br1) {
+    padding: 6px;
+    padding-left: 12px;
+  }
+}
+
+.department__input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.department__text {
+  text-align: start;
+  user-select: none;
+}
