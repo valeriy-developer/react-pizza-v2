@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useState, FC, useEffect } from 'react'
-import { Control, Controller, useWatch } from 'react-hook-form'
+import { Control, Controller } from 'react-hook-form'
 import { IDepartmentNovaPoshta, IForm } from '../types'
 
 type IProps = {
@@ -22,9 +22,6 @@ const SelectDepartment: FC<IProps> = ({
   wrappedClassName,
 }) => {
   const [isOpen, setOpen] = useState(false)
-  const dep = useWatch({ name: 'department', control })
-
-  console.log(dep)
 
   useEffect(() => {
     changeDepartmentValue('department', '')
