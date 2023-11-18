@@ -16,13 +16,35 @@
 .form__content-wrapper {
   display: flex;
   flex-direction: column;
-  row-gap: vw(52);
   margin-top: vw(54);
   max-width: 100%;
 
   @media (max-width: $br1) {
     margin-top: 42px;
-    row-gap: 52px;
+  }
+}
+
+.form__input {
+  margin-top: vw(52);
+
+  @media (max-width: $br1) {
+    margin-top: 52px;
+  }
+}
+
+.form__city {
+  margin-top: vw(52);
+
+  @media (max-width: $br1) {
+    margin-top: 52px;
+  }
+}
+
+.form__department {
+  margin-top: vw(16);
+
+  @media (max-width: $br1) {
+    margin-top: 16px;
   }
 }
 

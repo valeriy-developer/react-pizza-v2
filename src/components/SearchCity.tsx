@@ -2,6 +2,7 @@ import { Control, UseFormRegister, useWatch } from 'react-hook-form'
 import { useCallback, useEffect, useState, useMemo } from 'react'
 import axios from 'axios'
 import debounce from 'lodash.debounce'
+import classNames from 'classnames'
 import Input from './Input'
 import { IAreaData, ICityNovaPoshta, IClickedCity, IForm } from '../types'
 import City from './City'
@@ -10,11 +11,15 @@ interface IProps {
   control: Control<IForm>
   register: UseFormRegister<IForm>
   isInvalid: boolean
-  changeCityValue: (name: 'city' | 'phone' | 'email', value: string) => void
+  changeCityValue: (
+    name: 'city' | 'phone' | 'email' | 'department',
+    value: string
+  ) => void
   cities: ICityNovaPoshta[]
   setCities: React.Dispatch<React.SetStateAction<ICityNovaPoshta[]>>
   clickedCity: IClickedCity
   setClickedCity: React.Dispatch<React.SetStateAction<IClickedCity>>
+  wrappedClassName?: string
 }
 
 const SearchCity = ({
@@ -26,6 +31,7 @@ const SearchCity = ({
   setCities,
   clickedCity,
   setClickedCity,
+  wrappedClassName,
 }: IProps) => {
   const cityValue = useWatch({ control, name: 'city', defaultValue: '' })
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
@@ -76,6 +82,7 @@ const SearchCity = ({
   const swapToInput = () => {
     setClickedCity({ cityName: '', cityRef: '' })
     changeCityValue('city', '')
+    changeCityValue('department', '')
   }
 
   const onChangeFocus = (isFocused: boolean) => {
@@ -85,7 +92,7 @@ const SearchCity = ({
   }
 
   return (
-    <div className="search-city">
+    <div className={classNames('search-city', wrappedClassName)}>
       <div className="search-city__wrapper">
         {clickedCity.cityName === '' ? (
           <Input
@@ -95,7 +102,7 @@ const SearchCity = ({
             text="Назва міста..."
             control={control}
             isInvalid={isInvalid}
-            className="search-city__input"
+            wrappedClassName="search-city__input"
             focusChanged={onChangeFocus}
             autocomplete="off"
           />
@@ -133,3 +140,7 @@ const SearchCity = ({
 }
 
 export default SearchCity
+
+SearchCity.defaultProps = {
+  wrappedClassName: '',
+}

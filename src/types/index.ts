@@ -16,6 +16,7 @@ export interface IForm {
   phone: string
   email: string
   city: string
+  department: string
 }
 
 export interface IAreaData {

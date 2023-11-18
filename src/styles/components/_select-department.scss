@@ -1,0 +1,91 @@
+.select-department {
+  position: relative;
+}
+.select-department__value {
+  background-color: var(--accent);
+  color: var(--white);
+  width: fit-content;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: vw(18);
+  letter-spacing: 0.01em;
+  padding: vw(20);
+  border-radius: vw(20);
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: $br1) {
+    border-radius: 20px;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  @media (max-width: $br3) {
+    width: 100%;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 14px;
+  }
+}
+
+.select-department__text {
+  user-select: none;
+}
+
+.select-department__modal {
+  position: absolute;
+  top: vw(68);
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: vw(16) 0;
+  background-color: var(--white);
+  border-radius: 0 vw(20) vw(20) vw(20);
+  box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+  max-height: 16vh;
+  overflow: auto;
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    pointer-events 0.3s ease;
+
+  @media (max-width: $br1) {
+    top: 46px;
+    padding: 12px 0;
+    border-radius: 0 20px 20px 20px;
+    max-height: 16vh;
+  }
+
+  &--active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+.select-department__option {
+  position: relative;
+  background-color: transparent;
+  width: 100%;
+  padding: vw(10) 0;
+  transition: background-color 0.3s ease;
+  padding-left: vw(16);
+  cursor: pointer;
+
+  @media (max-width: $br1) {
+    padding: 6px;
+    padding-left: 12px;
+  }
+
+  &:hover {
+    background-color: #dbdbdb;
+  }
+
+  &--selected {
+    background-color: #dbdbdb;
+  }
+}

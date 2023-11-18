@@ -18,14 +18,14 @@ import removeLocalCart from '../utils/removeLocalCart'
 import { useAppDispatch } from '../redux/hooks'
 import { clearItems } from '../redux/slices/cartSlice'
 import SearchCity from './SearchCity'
-import DepartmentsList from './DepartmentsList'
+import SelectDepartment from './SelectDepartment'
 
 const Form = () => {
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
     setValue,
   } = useForm<IForm>({
     mode: 'all',
@@ -33,6 +33,7 @@ const Form = () => {
       city: '',
       email: '',
       phone: '',
+      department: '',
     },
   })
 
@@ -119,12 +120,14 @@ const Form = () => {
             text="Введіть електронну адресу..."
             control={control}
             isInvalid={!!errors.email}
+            wrappedClassName="form__input"
           />
           <Input
             {...register('phone', { required: true, pattern: phone })}
             text="Введіть номер моб. телефону..."
             control={control}
             isInvalid={!!errors.phone}
+            wrappedClassName="form__input"
           />
           <SearchCity
             control={control}
@@ -135,16 +138,23 @@ const Form = () => {
             setCities={setCities}
             clickedCity={clickedCity}
             setClickedCity={setClickedCity}
+            wrappedClassName="form__city"
           />
           {departments.length ? (
-            <DepartmentsList departments={departments} />
+            <SelectDepartment
+              options={departments}
+              changeDepartmentValue={setValue}
+              name="department"
+              control={control}
+              wrappedClassName="form__department"
+            />
           ) : null}
         </div>
         <Button
           text="Надіслати"
           className="form__btn"
           typeName="submit"
-          disabled={!isDirty || !isValid}
+          disabled={!isValid}
         />
       </form>
       <Modal

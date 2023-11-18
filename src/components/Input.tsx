@@ -4,7 +4,6 @@ import { Control, useController } from 'react-hook-form'
 import { IForm } from '../types'
 
 interface IProps {
-  className?: string
   name: keyof IForm
   control: Control<IForm>
   text: string
@@ -12,12 +11,12 @@ interface IProps {
   isInvalid: boolean
   focusChanged?: (isFocused: boolean) => void
   autocomplete?: string
+  wrappedClassName?: string
 }
 
 const Input = forwardRef<HTMLInputElement, IProps>(
   (
     {
-      className,
       name,
       text,
       type,
@@ -25,6 +24,7 @@ const Input = forwardRef<HTMLInputElement, IProps>(
       isInvalid,
       focusChanged,
       autocomplete,
+      wrappedClassName,
       ...rest
     },
     ref
@@ -50,7 +50,7 @@ const Input = forwardRef<HTMLInputElement, IProps>(
         className={classNames(
           'input',
           (data.field.value || isFocused) && 'input--active',
-          className
+          wrappedClassName
         )}
       >
         <label htmlFor={name} className="input__label">
@@ -76,8 +76,8 @@ Input.displayName = 'Input'
 export default Input
 
 Input.defaultProps = {
-  className: '',
   type: 'text',
   focusChanged: () => {},
   autocomplete: 'on',
+  wrappedClassName: '',
 }

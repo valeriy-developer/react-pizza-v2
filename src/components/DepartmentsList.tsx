@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import classNames from 'classnames'
-import { IDepartmentNovaPoshta } from '../types'
+import { Control, UseFormRegister } from 'react-hook-form'
+import { IDepartmentNovaPoshta, IForm } from '../types'
 import Department from './Department'
 import IconArrowDown from './icons/IconArrowDown'
 
 interface IProps {
   departments: IDepartmentNovaPoshta[]
+  control: Control<IForm>
+  register: UseFormRegister<IForm>
 }
 
-const DepartmentsList = ({ departments }: IProps) => {
+const DepartmentsList = ({ departments, control, register }: IProps) => {
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
+  const [departmentValue, setDepartmentValue] =
+    useState<string>('Оберіть відділення')
 
   return (
     <div className="departments-list">
@@ -21,7 +26,7 @@ const DepartmentsList = ({ departments }: IProps) => {
         )}
         onClick={() => setIsModalOpened(!isModalOpened)}
       >
-        Оберіть відділення
+        {departmentValue}
         <IconArrowDown />
       </button>
       <div
@@ -34,10 +39,21 @@ const DepartmentsList = ({ departments }: IProps) => {
             <Department
               key={item.departmentRef}
               departmentName={item.department}
-              id={item.departmentRef}
+              control={control}
+              name={item.department}
+              departmentClick={() => {
+                setDepartmentValue(item.department)
+                setIsModalOpened(false)
+              }}
             />
           ))}
         </ul>
+        <input
+          type="hidden"
+          {...register(`department`, {
+            required: true,
+          })}
+        />
       </div>
     </div>
   )
