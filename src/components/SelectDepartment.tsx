@@ -31,6 +31,9 @@ const SelectDepartment: FC<IProps> = ({
     <Controller
       name={name}
       control={control}
+      rules={{
+        required: true,
+      }}
       defaultValue={options[0]?.department}
       render={({ field }) => (
         <div className={classNames('select-department', wrappedClassName)}>

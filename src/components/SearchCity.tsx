@@ -1,7 +1,6 @@
 import { Control, UseFormRegister, useWatch } from 'react-hook-form'
-import { useCallback, useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
-import debounce from 'lodash.debounce'
 import classNames from 'classnames'
 import Input from './Input'
 import { IAreaData, ICityNovaPoshta, IClickedCity, IForm } from '../types'
@@ -22,6 +21,48 @@ interface IProps {
   wrappedClassName?: string
 }
 
+export const useDebounce = (value: string, delay: number) => {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [value, delay])
+
+  return debouncedValue
+}
+
+const getCities = async (value: string) => {
+  const { data } = await axios.post<IAreaData>(
+    `https://api.novaposhta.ua/v2.0/json/`,
+    {
+      apiKey: `${import.meta.env.VITE_NOVA_POSHTA_API_KEY}`,
+      modelName: 'Address',
+      calledMethod: 'getCities',
+      methodProperties: {
+        Page: '1',
+        Limit: '20',
+        FindByString: value,
+      },
+    }
+  )
+
+  const newData: ICityNovaPoshta[] = data.data.map(item => {
+    return {
+      cityName: item.Description,
+      province: item.AreaDescription,
+      cityRef: item.Ref,
+    }
+  })
+
+  return newData
+}
+
 const SearchCity = ({
   control,
   register,
@@ -33,46 +74,20 @@ const SearchCity = ({
   setClickedCity,
   wrappedClassName,
 }: IProps) => {
-  const cityValue = useWatch({ control, name: 'city', defaultValue: '' })
+  const cityValue = useWatch({ control, name: 'city' })
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
 
-  const getCitiesNovaPoshta = useCallback(async () => {
-    const { data } = await axios.post<IAreaData>(
-      `https://api.novaposhta.ua/v2.0/json/`,
-      {
-        apiKey: `${import.meta.env.VITE_NOVA_POSHTA_API_KEY}`,
-        modelName: 'Address',
-        calledMethod: 'getCities',
-        methodProperties: {
-          Page: '1',
-          Limit: '20',
-          FindByString: cityValue,
-        },
-      }
-    )
-
-    const newData: ICityNovaPoshta[] = data.data.map(item => {
-      return {
-        cityName: item.Description,
-        province: item.AreaDescription,
-        cityRef: item.Ref,
-      }
-    })
-
-    setCities(newData)
-  }, [cityValue, setCities])
-
-  const debouncedGetCitiesNovaPoshta = useMemo(
-    () =>
-      debounce(() => {
-        getCitiesNovaPoshta()
-      }, 600),
-    [getCitiesNovaPoshta]
-  )
+  const debouncedCityValue = useDebounce(cityValue, 350)
 
   useEffect(() => {
-    debouncedGetCitiesNovaPoshta()
-  }, [cityValue, debouncedGetCitiesNovaPoshta])
+    const asyncGetCities = async () => {
+      const data = await getCities(debouncedCityValue)
+      setCities(data)
+    }
+
+    asyncGetCities()
+    // getCities(debouncedCityValue).then(data => setCities(data))
+  }, [debouncedCityValue, cityValue, setCities])
 
   const onClickCity = (text: string, ref: string) => {
     changeCityValue('city', text)
