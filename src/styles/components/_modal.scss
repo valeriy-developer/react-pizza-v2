@@ -32,6 +32,8 @@
   width: 50vw;
   background-color: var(--white);
   border-radius: vw(20);
+  overflow: auto;
+  padding-bottom: 20px;
 
   @media (max-width: $br1) {
     width: 90vw;
