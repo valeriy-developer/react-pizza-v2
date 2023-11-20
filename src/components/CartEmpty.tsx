@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom'
+import { FC } from 'react'
 import IconEmptyCart from './icons/IconEmptyCart'
 import Button from './Button'
 
-const CartEmpty: React.FC = () => {
+const CartEmpty: FC = () => {
   const navigate = useNavigate()
 
   const backHome = () => {
