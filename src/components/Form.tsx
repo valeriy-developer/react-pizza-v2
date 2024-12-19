@@ -5,7 +5,6 @@ import axios from 'axios'
 import Button from './Button'
 import Input from './Input'
 import {
-  ICityNovaPoshta,
   IClickedCity,
   IDepartmentNovaPoshta,
   IDepartmentsData,
@@ -41,7 +40,6 @@ const Form = () => {
   const navigate = useNavigate()
   const { setFormOpened, setCompleteModalOpened, completeModalOpened } =
     useContext(FormContext)
-  const [cities, setCities] = useState<ICityNovaPoshta[]>([])
   const [clickedCity, setClickedCity] = useState<IClickedCity>({
     cityName: '',
     cityRef: '',
@@ -134,8 +132,6 @@ const Form = () => {
             register={register}
             isInvalid={!!errors.city}
             changeCityValue={setValue}
-            cities={cities}
-            setCities={setCities}
             clickedCity={clickedCity}
             setClickedCity={setClickedCity}
             wrappedClassName="form__city"

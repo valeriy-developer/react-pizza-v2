@@ -81,18 +81,8 @@
 }
 
 .app {
-  padding: vw(45) vw(55);
   height: 100%;
   width: 100%;
-  background-color: #ffdf8c;
-
-  @media (max-width: $br1) {
-    padding: 16px 20px;
-  }
-
-  @media (max-width: $br4) {
-    padding: 0;
-  }
 }
 
 .wrapper {

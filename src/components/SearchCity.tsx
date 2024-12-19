@@ -14,8 +14,6 @@ interface IProps {
     name: 'city' | 'phone' | 'email' | 'department',
     value: string
   ) => void
-  cities: ICityNovaPoshta[]
-  setCities: React.Dispatch<React.SetStateAction<ICityNovaPoshta[]>>
   clickedCity: IClickedCity
   setClickedCity: React.Dispatch<React.SetStateAction<IClickedCity>>
   wrappedClassName?: string
@@ -68,26 +66,15 @@ const SearchCity = ({
   register,
   isInvalid,
   changeCityValue,
-  cities,
-  setCities,
   clickedCity,
   setClickedCity,
   wrappedClassName,
 }: IProps) => {
   const cityValue = useWatch({ control, name: 'city' })
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false)
+  const [cities, setCities] = useState<ICityNovaPoshta[]>([])
 
   const debouncedCityValue = useDebounce(cityValue, 350)
-
-  useEffect(() => {
-    const asyncGetCities = async () => {
-      const data = await getCities(debouncedCityValue)
-      setCities(data)
-    }
-
-    asyncGetCities()
-    // getCities(debouncedCityValue).then(data => setCities(data))
-  }, [debouncedCityValue, cityValue, setCities])
 
   const onClickCity = (text: string, ref: string) => {
     changeCityValue('city', text)
@@ -101,10 +88,26 @@ const SearchCity = ({
   }
 
   const onChangeFocus = (isFocused: boolean) => {
-    setTimeout(() => {
-      setIsModalOpened(isFocused)
-    }, 100)
+    setIsModalOpened(isFocused)
   }
+
+  useEffect(() => {
+    if (!debouncedCityValue) {
+      setCities([])
+      return
+    }
+
+    const asyncGetCities = async () => {
+      try {
+        const data = await getCities(debouncedCityValue)
+        setCities(data)
+      } catch (error) {
+        console.error('Error fetching cities:', error)
+      }
+    }
+
+    asyncGetCities()
+  }, [debouncedCityValue])
 
   return (
     <div className={classNames('search-city', wrappedClassName)}>
@@ -131,25 +134,26 @@ const SearchCity = ({
           </button>
         )}
       </div>
-      <div
-        className={`search-city__modal ${
-          isModalOpened && 'search-city__modal--active'
-        }`}
-      >
-        <ul className="search-city__list">
+      {cities.length > 0 && (
+        <div
+          className={`search-city__modal ${
+            isModalOpened && 'search-city__modal--active'
+          }`}
+        >
           {cities.map(el => {
             return (
-              <City
-                key={el.cityName}
-                cityName={el.cityName}
-                cityRef={el.cityRef}
-                province={el.province}
-                handleClick={onClickCity}
-              />
+              <ul key={el.cityName} className="search-city__list">
+                <City
+                  cityName={el.cityName}
+                  cityRef={el.cityRef}
+                  province={el.province}
+                  handleClick={onClickCity}
+                />
+              </ul>
             )
           })}
-        </ul>
-      </div>
+        </div>
+      )}
     </div>
   )
 }
