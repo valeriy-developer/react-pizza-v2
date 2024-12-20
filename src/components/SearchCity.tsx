@@ -139,21 +139,22 @@ const SearchCity = ({
       {cities.length > 0 && (
         <div
           className={`search-city__modal ${
-            isModalOpened && 'search-city__modal--active'
+            isModalOpened ? 'search-city__modal--active' : ''
           }`}
         >
-          {cities.map(el => {
-            return (
-              <ul key={el.cityName} className="search-city__list">
+          <ul className="search-city__list">
+            {cities.map(el => {
+              return (
                 <City
+                  key={el.cityName}
                   cityName={el.cityName}
                   cityRef={el.cityRef}
                   province={el.province}
                   handleClick={onClickCity}
                 />
-              </ul>
-            )
-          })}
+              )
+            })}
+          </ul>
         </div>
       )}
     </div>

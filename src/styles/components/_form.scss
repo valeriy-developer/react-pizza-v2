@@ -16,43 +16,33 @@
 .form__content-wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: vw(54);
+  margin-top: vw(32);
   max-width: 100%;
+  row-gap: vw(40);
 
   @media (max-width: $br1) {
     margin-top: 42px;
+    row-gap: 20px;
   }
 }
 
-.form__input {
-  margin-top: vw(52);
-
-  @media (max-width: $br1) {
-    margin-top: 52px;
-  }
+.form__group-btns {
+  display: flex;
+  flex-direction: column;
+  row-gap: vw(20);
 }
 
-.form__city {
-  margin-top: vw(52);
-
-  @media (max-width: $br1) {
-    margin-top: 52px;
-  }
-}
-
-.form__department {
-  margin-top: vw(16);
-
-  @media (max-width: $br1) {
-    margin-top: 16px;
-  }
+.form__btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .form__btn {
-  margin-top: vw(42);
+  margin-top: vw(28);
 
   @media (max-width: $br1) {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 }
 

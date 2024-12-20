@@ -51,7 +51,7 @@
   background-color: var(--white);
   border-radius: 0 vw(20) vw(20) vw(20);
   box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
-  max-height: 16vh;
+  max-height: 120px;
   overflow: auto;
   pointer-events: none;
   opacity: 0;
@@ -63,7 +63,6 @@
     top: 27px;
     padding: 12px 0;
     border-radius: 0 20px 20px 20px;
-    max-height: 16vh;
   }
 
   &--active {

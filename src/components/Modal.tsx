@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { KeyboardEventHandler, useCallback, useEffect } from 'react'
+import { KeyboardEventHandler, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 interface IProps {
@@ -10,6 +10,32 @@ interface IProps {
 }
 
 const Modal = ({ children, isOpened, onClose, wrappedClass }: IProps) => {
+  const headerRef = useRef<HTMLDivElement | null>(null)
+
+  const updateHeaderHeight = useCallback(() => {
+    if (headerRef.current) {
+      const height = headerRef.current.offsetHeight
+      document.documentElement.style.setProperty(
+        '--modal-header-height',
+        `${height}px`
+      )
+    }
+  }, [])
+
+  useEffect(() => {
+    const observer = new ResizeObserver(() => updateHeaderHeight())
+    if (headerRef.current) {
+      observer.observe(headerRef.current)
+    }
+
+    // Оновлення висоти при завантаженні модального вікна
+    updateHeaderHeight()
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [updateHeaderHeight])
+
   const onKeyDown: KeyboardEventHandler<HTMLDivElement> = useCallback(
     event => {
       if (event.key === 'Escape') {
@@ -41,7 +67,7 @@ const Modal = ({ children, isOpened, onClose, wrappedClass }: IProps) => {
         tabIndex={0}
       />
       <div className="modal__wrapper">
-        <div className="modal__header">
+        <div className="modal__header" ref={headerRef}>
           <button
             className="modal__close-btn"
             onClick={() => onClose()}
@@ -51,7 +77,9 @@ const Modal = ({ children, isOpened, onClose, wrappedClass }: IProps) => {
             <span className="modal__line" />
           </button>
         </div>
-        <div className="modal__content">{children}</div>
+        <div className="modal__content-wrapper">
+          <div className="modal__content">{children}</div>
+        </div>
       </div>
     </div>
   )

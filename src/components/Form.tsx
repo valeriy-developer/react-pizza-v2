@@ -124,31 +124,35 @@ const Form = () => {
             isInvalid={!!errors.phone}
             wrappedClassName="form__input"
           />
-          <SearchCity
-            control={control}
-            register={register}
-            isInvalid={!!errors.city}
-            changeCityValue={setValue}
-            clickedCity={clickedCity}
-            setClickedCity={setClickedCity}
-            wrappedClassName="form__city"
-          />
-          {departments.length ? (
-            <SelectDepartment
-              options={departments}
-              changeDepartmentValue={setValue}
-              name="department"
+          <div className="form__group-btns">
+            <SearchCity
               control={control}
-              wrappedClassName="form__department"
+              register={register}
+              isInvalid={!!errors.city}
+              changeCityValue={setValue}
+              clickedCity={clickedCity}
+              setClickedCity={setClickedCity}
+              wrappedClassName="form__city"
             />
-          ) : null}
+            {departments.length ? (
+              <SelectDepartment
+                options={departments}
+                changeDepartmentValue={setValue}
+                name="department"
+                control={control}
+                wrappedClassName="form__department"
+              />
+            ) : null}
+          </div>
         </div>
-        <Button
-          text="Надіслати"
-          className="form__btn"
-          typeName="submit"
-          disabled={!isValid || !department}
-        />
+        <div className="form__btn-wrapper">
+          <Button
+            text="Надіслати"
+            className="form__btn"
+            typeName="submit"
+            disabled={!isValid || !department}
+          />
+        </div>
       </form>
       <Modal
         isOpened={completeModalOpened}
