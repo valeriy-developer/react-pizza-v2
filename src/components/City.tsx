@@ -6,13 +6,14 @@ interface IProps {
 }
 
 const City = ({ cityName, cityRef, province, handleClick }: IProps) => {
+  const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const target = e.target as HTMLElement
+    handleClick(target.innerText, cityRef)
+  }
+
   return (
     <li className="city">
-      <button
-        type="button"
-        className="city__btn"
-        onClick={e => handleClick((e.target as HTMLElement).innerText, cityRef)}
-      >
+      <button type="button" className="city__btn" onClick={e => onClick(e)}>
         м.{cityName} - {province} обл.
       </button>
     </li>

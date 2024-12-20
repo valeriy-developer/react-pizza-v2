@@ -26,6 +26,7 @@ const Form = () => {
     control,
     formState: { errors, isValid },
     setValue,
+    watch,
   } = useForm<IForm>({
     mode: 'all',
     defaultValues: {
@@ -62,16 +63,16 @@ const Form = () => {
       }
     )
 
-    const newData: IDepartmentNovaPoshta[] = data.data.map(item => {
-      return {
-        department: item.Description,
-        departmentRef: item.Ref,
-        cityRef: item.CityRef,
-      }
-    })
+    const newData: IDepartmentNovaPoshta[] = data.data.map(item => ({
+      department: item.Description,
+      departmentRef: item.Ref,
+      cityRef: item.CityRef,
+    }))
 
     setDepartments(newData)
   }, [clickedCity.cityRef])
+
+  const department = watch('department')
 
   const onSubmit: SubmitHandler<IForm> = data => {
     if (data) {
@@ -101,7 +102,6 @@ const Form = () => {
     if (clickedCity.cityName) {
       getDepartmentNovaPoshta()
     }
-
     setDepartments([])
   }, [clickedCity, getDepartmentNovaPoshta])
 
@@ -111,10 +111,7 @@ const Form = () => {
         <legend className="form__title">Контакти для замовлення</legend>
         <div className="form__content-wrapper">
           <Input
-            {...register('email', {
-              required: true,
-              pattern: email,
-            })}
+            {...register('email', { required: true, pattern: email })}
             text="Введіть електронну адресу..."
             control={control}
             isInvalid={!!errors.email}
@@ -150,7 +147,7 @@ const Form = () => {
           text="Надіслати"
           className="form__btn"
           typeName="submit"
-          disabled={!isValid}
+          disabled={!isValid || !department}
         />
       </form>
       <Modal

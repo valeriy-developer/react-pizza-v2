@@ -88,7 +88,9 @@ const SearchCity = ({
   }
 
   const onChangeFocus = (isFocused: boolean) => {
-    setIsModalOpened(isFocused)
+    setTimeout(() => {
+      setIsModalOpened(isFocused)
+    }, 150)
   }
 
   useEffect(() => {
