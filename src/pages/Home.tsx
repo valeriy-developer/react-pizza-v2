@@ -29,7 +29,7 @@ const Home = () => {
     useAppSelector(state => state.filter)
 
   const sortType: string = sort.sortProperty
-  const limit = 4
+  const limit = 8
 
   useEffect(() => {
     if (isMounted.current) {
