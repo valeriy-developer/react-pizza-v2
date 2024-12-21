@@ -9,14 +9,12 @@ const App = () => {
   return (
     <div className="app">
       <FormContextProvider>
-        <div className="wrapper">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </FormContextProvider>
     </div>
   )

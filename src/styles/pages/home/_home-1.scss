@@ -1,16 +1,9 @@
 .home-1 {
+  padding-bottom: vw(20);
+
   @media (max-width: $br3) {
     margin-top: 12px;
-  }
-}
-
-.home-1__line {
-  width: 100%;
-  height: 2px;
-  background-color: #f6f6f6;
-
-  @media (max-width: $br3) {
-    display: none;
+    padding-bottom: 16px;
   }
 }
 

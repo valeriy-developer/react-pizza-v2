@@ -1,17 +1,8 @@
 .empty-cart {
-  height: 100vh;
-
-  svg {
-    display: block;
-    width: vw(300);
-    height: vw(255);
-    max-width: 100%;
-    margin-top: vw(46);
-
-    @media (max-width: $br1) {
-      display: none;
-    }
-  }
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .empty-cart__wrapper {
@@ -20,6 +11,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  flex-grow: 1;
 }
 
 .empty-cart__title {
@@ -60,7 +52,7 @@
 }
 
 .empty-cart__btn {
-  margin-top: vw(74);
+  margin-top: vw(34);
   background-color: var(--white);
   color: #cacaca;
   border: 1px solid #d3d3d3;
@@ -80,6 +72,6 @@
   }
 
   @media (max-width: $br1) {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 }

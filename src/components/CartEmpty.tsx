@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import { FC } from 'react'
-import IconEmptyCart from './icons/IconEmptyCart'
 import Button from './Button'
 
 const CartEmpty: FC = () => {
@@ -18,7 +17,6 @@ const CartEmpty: FC = () => {
           Найімовірніше, Ви не замовляли ще піцу.
           <br /> Щоб замовити піцу, перейдіть на головну сторінку.
         </p>
-        <IconEmptyCart />
         <Button
           text="Повернутись назад"
           className="empty-cart__btn"
