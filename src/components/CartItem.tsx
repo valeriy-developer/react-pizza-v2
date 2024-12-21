@@ -15,16 +15,25 @@ const CartItem = ({
   sizeItem,
 }: ICartItem) => {
   const dispatch = useAppDispatch()
+  const cartItem = {
+    id,
+    imgUrl,
+    title,
+    price,
+    typeItem,
+    sizeItem,
+    count,
+  }
 
   const onClickPlus = (): void => {
-    dispatch(plusItem(id))
+    dispatch(plusItem(cartItem))
   }
 
   const onClickMinus = () =>
-    count <= 1 ? dispatch(removeItem(id)) : dispatch(minusItem(id))
+    count <= 1 ? dispatch(removeItem(cartItem)) : dispatch(minusItem(cartItem))
 
   const onClickRemove = (): void => {
-    dispatch(removeItem(id))
+    dispatch(removeItem(cartItem))
   }
 
   return (

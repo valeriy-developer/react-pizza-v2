@@ -10,12 +10,16 @@ const initialState: ICartSlice = {
   items,
 }
 
+const getItemKey = (item: ICartItem): string =>
+  `${item.id}_${item.sizeItem}_${item.typeItem}`
+
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<ICartItem>) {
-      const findItem = state.items.find(obj => obj.id === action.payload.id)
+      const itemKey = getItemKey(action.payload)
+      const findItem = state.items.find(obj => getItemKey(obj) === itemKey)
 
       if (findItem) {
         findItem.count++
@@ -25,8 +29,9 @@ export const cartSlice = createSlice({
 
       state.totalPrice = totalPriceCompute(state.items)
     },
-    plusItem(state, action: PayloadAction<string>) {
-      const findItem = state.items.find(obj => obj.id === action.payload)
+    plusItem(state, action: PayloadAction<ICartItem>) {
+      const itemKey = getItemKey(action.payload)
+      const findItem = state.items.find(obj => getItemKey(obj) === itemKey)
 
       if (findItem) {
         findItem.count++
@@ -34,17 +39,22 @@ export const cartSlice = createSlice({
 
       state.totalPrice = totalPriceCompute(state.items)
     },
-    minusItem(state, action: PayloadAction<string>) {
-      const findItem = state.items.find(obj => obj.id === action.payload)
+    minusItem(state, action: PayloadAction<ICartItem>) {
+      const itemKey = getItemKey(action.payload)
+      const findItem = state.items.find(obj => getItemKey(obj) === itemKey)
 
       if (findItem) {
         findItem.count--
+        if (findItem.count === 0) {
+          state.items = state.items.filter(obj => getItemKey(obj) !== itemKey)
+        }
       }
 
       state.totalPrice = totalPriceCompute(state.items)
     },
-    removeItem(state, action: PayloadAction<string>) {
-      state.items = state.items.filter(obj => obj.id !== action.payload)
+    removeItem(state, action: PayloadAction<ICartItem>) {
+      const itemKey = getItemKey(action.payload)
+      state.items = state.items.filter(obj => getItemKey(obj) !== itemKey)
 
       state.totalPrice = totalPriceCompute(state.items)
     },

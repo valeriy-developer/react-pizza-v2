@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import IconPlus from './icons/IconPlus'
 import { addItem } from '../redux/slices/cartSlice'
-import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { useAppDispatch } from '../redux/hooks'
 import { IPizza } from '../types/pizza'
 
 const doughs: string[] = ['Тонке', 'Традиційне']
@@ -18,10 +18,6 @@ const Item: React.FC<IPizza> = ({
 
   const [activeDough, setActiveDough] = useState<number>(0)
   const [activeSize, setActiveSize] = useState<number>(0)
-  const cartItem = useAppSelector(state =>
-    state.cart.items.find((obj): boolean => obj.id === id)
-  )
-  const addedCount: number = cartItem ? cartItem.count : 0
 
   const onClickAdd = (): void => {
     const item = {
@@ -87,9 +83,6 @@ const Item: React.FC<IPizza> = ({
           <button onClick={onClickAdd} className="item__btn" type="button">
             <IconPlus />
             Додати
-            {addedCount > 0 && (
-              <span className="item__amount">{addedCount}</span>
-            )}
           </button>
         </div>
       </div>
