@@ -54,7 +54,7 @@ const Item: React.FC<IPizza> = ({
           <ul className="item__dough-menu">
             {types.map((typeNum, idx) => {
               return (
-                <li key={Math.random()} className="item__dough">
+                <li key={typeNum} className="item__dough">
                   <button
                     className={
                       activeDough === idx
@@ -73,7 +73,7 @@ const Item: React.FC<IPizza> = ({
           <ul className="item__size-menu">
             {size.map((sizeNum, idx) => {
               return (
-                <li key={Math.random()} className="item__size">
+                <li key={sizeNum} className="item__size">
                   <button
                     className={
                       activeSize === idx

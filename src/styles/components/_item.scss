@@ -91,6 +91,10 @@
   font-family: 'Montserrat';
   font-weight: 700;
   text-transform: lowercase;
+  box-shadow: none;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
 
   @media (max-width: $br1) {
     font-size: 14px;
@@ -101,7 +105,7 @@
   }
 
   &--active {
-    background: var(--white);
+    background-color: var(--white);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
   }
 }
@@ -126,7 +130,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
+  background-color: transparent;
   border-radius: 5px;
   padding: vw(8) 0;
   cursor: pointer;
@@ -137,6 +141,10 @@
   font-family: 'Montserrat';
   font-weight: 700;
   text-transform: lowercase;
+  box-shadow: none;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
 
   @media (max-width: $br1) {
     font-size: 14px;
