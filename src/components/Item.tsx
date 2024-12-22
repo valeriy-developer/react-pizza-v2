@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import IconPlus from './icons/IconPlus'
 import { addItem } from '../redux/slices/cartSlice'
 import { useAppDispatch } from '../redux/hooks'
@@ -19,6 +20,16 @@ const Item: React.FC<IPizza> = ({
   const [activeDough, setActiveDough] = useState<number>(0)
   const [activeSize, setActiveSize] = useState<number>(0)
 
+  const notify = () => {
+    toast(
+      `${
+        title.includes('піца') || title.includes('Піца')
+          ? title
+          : `Піца ${title.toLowerCase()}`
+      } додана до кошика`
+    )
+  }
+
   const onClickAdd = (): void => {
     const item = {
       id,
@@ -31,6 +42,7 @@ const Item: React.FC<IPizza> = ({
     }
 
     dispatch(addItem(item))
+    notify()
   }
 
   return (

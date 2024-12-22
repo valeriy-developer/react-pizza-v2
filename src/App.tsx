@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import Header from './components/Header'
 import Cart from './pages/Cart'
 import Home from './pages/Home'
@@ -15,6 +16,19 @@ const App = () => {
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          stacked
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
       </FormContextProvider>
     </div>
   )

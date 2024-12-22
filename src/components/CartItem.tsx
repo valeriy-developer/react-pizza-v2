@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import IconAmountMinus from './icons/IconAmountMinus'
 import IconAmountPlus from './icons/IconAmountPlus'
 import IconRemove from './icons/IconRemove'
@@ -25,8 +26,19 @@ const CartItem = ({
     count,
   }
 
+  const notify = () => {
+    toast(
+      `${
+        title.includes('піца') || title.includes('Піца')
+          ? title
+          : `Піца ${title.toLowerCase()}`
+      } додана до кошика`
+    )
+  }
+
   const onClickPlus = (): void => {
     dispatch(plusItem(cartItem))
+    notify()
   }
 
   const onClickMinus = () =>

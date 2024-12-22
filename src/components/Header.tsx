@@ -65,7 +65,6 @@ const Header = () => {
       observer.observe(headerRef.current)
     }
 
-    // Оновлення висоти при завантаженні модального вікна
     updateHeaderHeight()
 
     return () => {
