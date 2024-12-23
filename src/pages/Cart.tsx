@@ -91,7 +91,11 @@ const Cart = () => {
   return (
     <>
       {!totalPrice ? <CartEmpty /> : cartContent}
-      <Modal onClose={closeHandler} isOpened={formOpened}>
+      <Modal
+        title="Контакти для замовлення"
+        onClose={closeHandler}
+        isOpened={formOpened}
+      >
         <Form />
       </Modal>
     </>

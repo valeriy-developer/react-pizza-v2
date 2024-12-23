@@ -7,9 +7,16 @@ interface IProps {
   isOpened: boolean
   onClose: () => void
   wrappedClass?: string
+  title?: string
 }
 
-const Modal = ({ children, isOpened, onClose, wrappedClass }: IProps) => {
+const Modal = ({
+  children,
+  isOpened,
+  onClose,
+  wrappedClass,
+  title,
+}: IProps) => {
   const headerRef = useRef<HTMLDivElement | null>(null)
 
   const updateHeaderHeight = useCallback(() => {
@@ -28,7 +35,6 @@ const Modal = ({ children, isOpened, onClose, wrappedClass }: IProps) => {
       observer.observe(headerRef.current)
     }
 
-    // Оновлення висоти при завантаженні модального вікна
     updateHeaderHeight()
 
     return () => {
@@ -68,6 +74,7 @@ const Modal = ({ children, isOpened, onClose, wrappedClass }: IProps) => {
       />
       <div className="modal__wrapper">
         <div className="modal__header" ref={headerRef}>
+          <h3 className="modal__title">{title}</h3>
           <button
             className="modal__close-btn"
             onClick={() => onClose()}
@@ -91,4 +98,5 @@ export default Modal
 
 Modal.defaultProps = {
   wrappedClass: null,
+  title: '',
 }

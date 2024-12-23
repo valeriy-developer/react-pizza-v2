@@ -1,6 +1,7 @@
 .select-department {
   position: relative;
 }
+
 .select-department__value {
   background-color: var(--accent);
   color: var(--white);
@@ -41,33 +42,39 @@
 
 .select-department__modal {
   position: absolute;
-  top: vw(68);
+  top: vw(64);
   left: 0;
   width: 100%;
   max-width: 100%;
-  padding: vw(16) 0;
+  padding: 0;
   background-color: var(--white);
-  border-radius: 0 vw(20) vw(20) vw(20);
-  box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
-  max-height: 120px;
+  border-radius: vw(20);
+  box-shadow: none;
+  max-height: 0;
   overflow: auto;
   pointer-events: none;
-  opacity: 0;
   transition:
-    opacity 0.3s ease,
-    pointer-events 0.3s ease;
+    max-height 0.3s ease,
+    padding 0.3s ease,
+    box-shadow 0.3s ease;
 
   @media (max-width: $br1) {
-    top: 46px;
-    padding: 12px 0;
-    border-radius: 0 20px 20px 20px;
+    top: 45px;
+    border-radius: 20px;
   }
 
   &--active {
-    opacity: 1;
     pointer-events: auto;
+    max-height: 120px;
+    padding: vw(16) 0;
+    box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: $br1) {
+      padding: 12px 0;
+    }
   }
 }
+
 .select-department__option {
   position: relative;
   background-color: transparent;

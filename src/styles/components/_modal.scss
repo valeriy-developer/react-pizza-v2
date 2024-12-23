@@ -44,7 +44,7 @@
 .modal__header {
   position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: vw(20);
 
@@ -59,6 +59,21 @@
     height: 1px;
     background-color: #d3d3d3;
     bottom: 0;
+  }
+}
+
+.modal__title {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-size: vw(32);
+  letter-spacing: 0.01em;
+
+  @media (max-width: $br1) {
+    font-size: 28px;
+  }
+
+  @media (max-width: $br4) {
+    font-size: 20px;
   }
 }
 
@@ -93,7 +108,11 @@
 .modal__content-wrapper {
   max-height: calc(70vh - var(--modal-header-height));
   height: calc(100% - var(--modal-header-height));
-  overflow: auto;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
 }
 
 .modal__content {

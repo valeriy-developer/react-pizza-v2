@@ -108,7 +108,6 @@ const Form = () => {
   return (
     <>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <legend className="form__title">Контакти для замовлення</legend>
         <div className="form__content-wrapper">
           <Input
             {...register('email', { required: true, pattern: email })}
