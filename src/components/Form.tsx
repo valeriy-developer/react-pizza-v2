@@ -149,7 +149,11 @@ const Form = () => {
             text="Надіслати"
             className="form__btn"
             typeName="submit"
-            disabled={!isValid || !department}
+            disabled={
+              !isValid ||
+              (departments.length > 0 && !department) ||
+              !clickedCity.cityName
+            }
           />
         </div>
       </form>
